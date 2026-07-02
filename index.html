@@ -9,16 +9,374 @@
   <meta property="og:description" content="Expert dental care since 2015. Transforming smiles across Lagos." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    /* ── HOMEPAGE-ONLY STYLES ── */
+
+    /* Proof Strip */
+    .proof-strip {
+      background: var(--primary);
+      padding: 0;
+      overflow: hidden;
+    }
+    .proof-strip-inner {
+      display: flex;
+      height: clamp(220px, 35vw, 420px);
+    }
+    .proof-strip-img {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+    .proof-strip-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+      filter: brightness(0.85) saturate(1.1);
+    }
+    .proof-strip-img:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.2); }
+    .proof-strip-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(30,13,22,0.5) 100%);
+      pointer-events: none;
+    }
+    .proof-strip-overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 280px;
+      padding: 48px 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, #2E0E20 100%);
+      text-align: center;
+      flex-direction: column;
+      gap: 20px;
+      border-left: 1px solid rgba(232,164,184,0.15);
+    }
+    .proof-strip-stat {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--pink) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1;
+    }
+    .proof-strip-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .proof-strip-divider {
+      width: 1px; height: 28px;
+      background: linear-gradient(to bottom, transparent, rgba(201,150,58,0.4), transparent);
+      margin: 0 auto;
+    }
+
+    /* Feature Badges row */
+    .trust-badges {
+      background: var(--pink-light);
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(181,96,122,0.12);
+    }
+    .trust-badges-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(24px, 4vw, 64px);
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-dark);
+    }
+    .trust-badge svg {
+      width: 28px; height: 28px;
+      color: var(--pink-dark);
+      flex-shrink: 0;
+    }
+    .trust-badge-text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+    .trust-badge-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .trust-badge-sep {
+      width: 1px; height: 32px;
+      background: rgba(181,96,122,0.2);
+    }
+
+    /* Photo Experience Mosaic */
+    .experience-section {
+      padding: var(--section-pad) 0;
+      background: linear-gradient(180deg, #0C0808 0%, #200B14 100%);
+    }
+    .experience-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 12px;
+      margin-top: 52px;
+    }
+    .exp-tile {
+      overflow: hidden;
+      border-radius: 6px;
+      position: relative;
+      cursor: pointer;
+    }
+    .exp-tile img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease, filter 0.5s ease;
+      filter: brightness(0.88) saturate(1.05);
+    }
+    .exp-tile:hover img { transform: scale(1.07); filter: brightness(1) saturate(1.2); }
+    .exp-tile--large { grid-column: 1; grid-row: 1 / 3; }
+    .exp-tile--large img { height: 100%; }
+    .exp-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,13,22,0.7) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .exp-tile-label {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      z-index: 2;
+      font-family: var(--font-body);
+    }
+
+    /* Why section improved */
+    .why-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+      margin-bottom: clamp(60px, 8vw, 100px);
+    }
+    .why-split.reverse { direction: rtl; }
+    .why-split.reverse > * { direction: ltr; }
+    .why-image-wrap {
+      position: relative;
+      height: clamp(340px, 45vw, 560px);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .why-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+    .why-image-wrap:hover img { transform: scale(1.04); }
+    .why-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(232,164,184,0.12) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .why-image-badge {
+      position: absolute;
+      bottom: 24px; right: 24px;
+      background: linear-gradient(135deg, var(--gold), var(--pink-dark));
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 8px;
+      z-index: 2;
+      text-align: center;
+      min-width: 120px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .why-image-badge .badge-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      display: block;
+      line-height: 1;
+    }
+    .why-image-badge .badge-txt {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+    .why-content h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .why-content p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .why-feature-list {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .why-feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+    .why-feature-list li::before {
+      content: '';
+      width: 20px; height: 20px;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 12px;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      position: relative;
+      padding: clamp(80px, 10vw, 140px) 0;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--pink-dark) 0%, #C9963A 50%, var(--pink-dark) 100%);
+      z-index: 0;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("DPkJQpwkSpM-01.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+      mix-blend-mode: luminosity;
+    }
+    .cta-banner > * { position: relative; z-index: 1; }
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 7rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .cta-banner p {
+      color: rgba(255,255,255,0.82);
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      margin-bottom: 44px;
+      max-width: 520px;
+      margin-left: auto; margin-right: auto;
+    }
+    .cta-banner-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--pink-dark);
+      padding: 16px 36px;
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+    .btn-white:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+    .btn-white-outline {
+      background: transparent;
+      color: #fff;
+      padding: 16px 36px;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+    .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    /* Services section on light bg — fix text colors */
+    .services-section h2, .services-section .label-tag { color: var(--text-dark); }
+    .service-card h3 { color: #fff; }
+    .service-card p { color: rgba(255,255,255,0.58); }
+
+    /* Testimonials light section */
+    .testimonials-light-section {
+      background: linear-gradient(160deg, var(--pink-light) 0%, #fff 50%, var(--pink-light) 100%);
+      padding: var(--section-pad) 0;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .proof-strip-inner { flex-direction: column; height: auto; }
+      .proof-strip-img { height: 200px; }
+      .proof-strip-overlay { flex-direction: row; flex-wrap: wrap; min-width: unset; }
+      .experience-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .exp-tile--large { grid-column: 1 / 3; grid-row: auto; height: 240px; }
+      .why-split, .why-split.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .why-image-wrap { height: 280px; }
+    }
+    @media (max-width: 600px) {
+      .experience-mosaic { grid-template-columns: 1fr; }
+      .exp-tile--large { grid-column: 1; }
+      .trust-badges-row { gap: 16px; }
+      .trust-badge-sep { display: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -33,11 +391,8 @@
 <div class="loader-curtain" id="curtain-left"></div>
 <div class="loader-curtain" id="curtain-right"></div>
 
-<!-- ══ CURSOR ══ -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
-
-<!-- ══ SCROLL PROGRESS ══ -->
 <div id="scroll-progress"></div>
 
 <!-- ══ NAVBAR ══ -->
@@ -48,7 +403,6 @@
     </svg>
     <span class="nav-logo-text">Smile <span>Best</span></span>
   </a>
-
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
@@ -57,20 +411,15 @@
     <a href="testimonials.html">Testimonials</a>
     <a href="contact.html" class="nav-cta">Book Now</a>
   </div>
-
-  <button class="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- Utility Bar -->
 <div id="nav-utility">
   <strong>Same-Day Appointments Available</strong>
   <a href="tel:+2347038057170">+234 703 805 7170</a>
   <span>Mon–Sat 8am–6pm · Ogba, Ikeja</span>
 </div>
 
-<!-- Mobile Nav -->
 <div id="mobile-nav">
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
@@ -80,22 +429,14 @@
   <a href="contact.html">Book Now</a>
 </div>
 
-<!-- ══ HERO SECTION ══ -->
-<section class="hero-section" style="margin-top: 0;">
-
-  <!-- Full-screen hero video -->
+<!-- ══ HERO ══ -->
+<section class="hero-section" style="margin-top:0;">
   <video id="hero-video" src="hero.mp4" autoplay muted playsinline preload="auto"></video>
-
-  <!-- Dark overlay keeps text readable -->
   <div class="hero-video-overlay"></div>
-
-  <!-- Mobile fallback gradient -->
   <div class="hero-gradient-bg"></div>
 
-  <!-- Orbital image system — activates when video ends -->
   <div id="hero-orbit">
     <div class="orbit-center-glow">
-      <!-- Radial spoke SVG -->
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(100,100)" stroke="rgba(201,150,58,0.7)" stroke-width="0.8">
           <line x1="0" y1="-20" x2="0" y2="-98"/>
@@ -140,14 +481,14 @@
   </div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Expert Dental Care Since 2015</p>
+    <p class="hero-eyebrow">Lagos's Most Trusted Dental Clinic · Since 2015</p>
     <h1 class="hero-headline" data-splitting>
       YOUR SMILE.<br>TRANSFORMED.
     </h1>
-    <p class="hero-subline">Expert Dental Care Since 2015 &nbsp;·&nbsp; Ogba, Ikeja, Lagos</p>
+    <p class="hero-subline">Whitening · Braces · Implants · Veneers &nbsp;·&nbsp; Ogba, Ikeja, Lagos</p>
     <div class="hero-ctas">
-      <a href="contact.html" class="btn btn-gold magnetic"><span>Book Appointment</span></a>
-      <a href="transformations.html" class="btn btn-outline magnetic"><span>See Transformations</span></a>
+      <a href="contact.html" class="btn btn-gold magnetic"><span>Book Free Consultation</span></a>
+      <a href="transformations.html" class="btn btn-outline magnetic"><span>See Real Results</span></a>
     </div>
   </div>
 
@@ -157,50 +498,109 @@
   </div>
 </section>
 
-<!-- ══ MARQUEE STRIP ══ -->
+<!-- ══ MARQUEE ══ -->
 <div class="marquee-strip">
   <div class="marquee-track">
-    <span>Teeth Whitening</span>
-    <span>Dental Implants</span>
-    <span>Braces</span>
-    <span>Orthodontics</span>
-    <span>Root Canal</span>
-    <span>Crowns &amp; Bridges</span>
-    <span>Veneers</span>
-    <span>Family Dentistry</span>
-    <span>Scaling &amp; Polishing</span>
-    <span>Cosmetic Dentistry</span>
-    <span>Teeth Whitening</span>
-    <span>Dental Implants</span>
-    <span>Braces</span>
-    <span>Orthodontics</span>
-    <span>Root Canal</span>
-    <span>Crowns &amp; Bridges</span>
-    <span>Veneers</span>
-    <span>Family Dentistry</span>
-    <span>Scaling &amp; Polishing</span>
-    <span>Cosmetic Dentistry</span>
+    <span>Teeth Whitening</span><span>Dental Implants</span><span>Braces</span>
+    <span>Orthodontics</span><span>Root Canal</span><span>Crowns &amp; Bridges</span>
+    <span>Veneers</span><span>Family Dentistry</span><span>Scaling &amp; Polishing</span>
+    <span>Cosmetic Dentistry</span><span>Teeth Whitening</span><span>Dental Implants</span>
+    <span>Braces</span><span>Orthodontics</span><span>Root Canal</span>
+    <span>Crowns &amp; Bridges</span><span>Veneers</span><span>Family Dentistry</span>
+    <span>Scaling &amp; Polishing</span><span>Cosmetic Dentistry</span>
+  </div>
+</div>
+
+<!-- ══ TRUST BADGES ══ -->
+<div class="trust-badges">
+  <div class="container">
+    <div class="trust-badges-row">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="trust-badge-text">
+          <strong>5,000+ Smiles Transformed</strong>
+          <span>Trusted by patients across Lagos since 2015</span>
+        </div>
+      </div>
+      <div class="trust-badge-sep"></div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div class="trust-badge-text">
+          <strong>Same-Day Appointments</strong>
+          <span>Call us in the morning, see us today</span>
+        </div>
+      </div>
+      <div class="trust-badge-sep"></div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        <div class="trust-badge-text">
+          <strong>28K Instagram Community</strong>
+          <span>Real patients, real results, real smiles</span>
+        </div>
+      </div>
+      <div class="trust-badge-sep"></div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <div class="trust-badge-text">
+          <strong>Pain-Free Treatment</strong>
+          <span>Comfortable, modern techniques — we care</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROOF STRIP — Patient Photo Gallery ══ -->
+<div class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="proof-strip-img">
+      <img src="DPkJQpwkSpM-02.jpg" alt="Smile Best Dental patient result" loading="lazy">
+    </div>
+    <div class="proof-strip-img">
+      <img src="DGwxJEJIN9Y-02.jpg" alt="Beautiful smile after braces" loading="lazy">
+    </div>
+    <div class="proof-strip-img">
+      <img src="DPkJQpwkSpM-03.jpg" alt="Teeth whitening result Lagos" loading="lazy">
+    </div>
+    <div class="proof-strip-img">
+      <img src="unnamed.jpg" alt="Happy dental patient" loading="lazy">
+    </div>
+    <div class="proof-strip-overlay">
+      <div>
+        <div class="proof-strip-stat">10+</div>
+        <div class="proof-strip-label">Years of Excellence</div>
+      </div>
+      <div class="proof-strip-divider"></div>
+      <div>
+        <div class="proof-strip-stat">5K+</div>
+        <div class="proof-strip-label">Smiles Transformed</div>
+      </div>
+      <div class="proof-strip-divider"></div>
+      <div>
+        <div class="proof-strip-stat">28K</div>
+        <div class="proof-strip-label">Instagram Fans</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- ══ TRANSFORMATION TEASER ══ -->
 <section class="transformation-section section-pad" data-section="transformations">
   <div class="container">
-    <div class="transformation-headline display-large text-white gsap-fade-up" data-split="chars">
-      REAL RESULTS.<br><em style="color:var(--gold);font-style:italic;">REAL SMILES.</em>
+    <div class="section-label gsap-fade-up">
+      <span class="label-tag" style="color:var(--pink);">Real Results</span>
     </div>
+    <h2 class="gsap-fade-up" style="font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);font-weight:300;color:#fff;line-height:0.92;letter-spacing:-0.03em;margin-bottom:16px;">
+      Before &amp; After.<br><em style="color:var(--gold);font-style:italic;">The Proof is in the Smile.</em>
+    </h2>
+    <p class="gsap-fade-up" style="color:rgba(255,255,255,0.55);font-size:1.05rem;max-width:560px;margin-bottom:60px;line-height:1.8;">
+      Every transformation is a real patient who decided their smile was worth investing in. These are their stories.
+    </p>
 
-    <div class="before-after-grid" style="margin-top:60px;">
-
-      <div class="ba-card gsap-fade-up" data-lightbox
-           data-category="braces"
-           data-treatment="Braces · Orthodontics"
-           data-duration="18 months"
-           data-name="Success O."
-           data-before="images/placeholder-before-1.jpg"
-           data-after="images/placeholder-after-1.jpg">
+    <div class="before-after-grid stagger-children">
+      <div class="ba-card" data-lightbox data-category="braces" data-treatment="Braces · Orthodontics" data-duration="18 months" data-name="Success O.">
         <div class="ba-images">
-          <div class="ba-before" style="background-image:url('DGwxJEJIN9Y-01.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ba-before" style="background-image:url('DGwxJEJIN9Y-01.jpg');background-size:cover;background-position:center top;"></div>
           <div class="ba-divider"></div>
           <div class="ba-after" style="background-image:url('DGwxJEJIN9Y-02.jpg');background-size:cover;background-position:center;"></div>
           <div class="ba-labels"><span class="ba-label">Before</span><span class="ba-label">After</span></div>
@@ -211,15 +611,11 @@
         </div>
       </div>
 
-      <div class="ba-card gsap-fade-up" data-lightbox
-           data-category="whitening"
-           data-treatment="Teeth Whitening"
-           data-duration="1 session"
-           data-name="Kemi A.">
+      <div class="ba-card" data-lightbox data-category="whitening" data-treatment="Teeth Whitening" data-duration="1 session" data-name="Kemi A.">
         <div class="ba-images">
           <div class="ba-before" style="background-image:url('DTe8XjADEUU.webp');background-size:cover;background-position:top center;"></div>
           <div class="ba-divider"></div>
-          <div class="ba-after" style="background-image:url('DTe8XjADEUU.webp');background-size:cover;background-position:bottom center;"></div>
+          <div class="ba-after" style="background-image:url('DPkJQpwkSpM-02.jpg');background-size:cover;background-position:center;"></div>
           <div class="ba-labels"><span class="ba-label">Before</span><span class="ba-label">After</span></div>
         </div>
         <div class="ba-info">
@@ -228,13 +624,11 @@
         </div>
       </div>
 
-      <div class="ba-card gsap-fade-up" data-lightbox
-           data-category="veneers"
-           data-treatment="Porcelain Veneers"
-           data-duration="2 appointments"
-           data-name="Tunde B.">
-        <div class="ba-images" style="position:relative;">
-          <img src="DZ3J4CJx2XF.webp" alt="Veneers transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="ba-card" data-lightbox data-category="veneers" data-treatment="Porcelain Veneers" data-duration="2 appointments" data-name="Tunde B.">
+        <div class="ba-images">
+          <div class="ba-before" style="background-image:url('DJPSTwOId51.jpg');background-size:cover;background-position:center;"></div>
+          <div class="ba-divider"></div>
+          <div class="ba-after" style="background-image:url('DZ3J4CJx2XF.webp');background-size:cover;background-position:center;"></div>
           <div class="ba-labels"><span class="ba-label">Before</span><span class="ba-label">After</span></div>
         </div>
         <div class="ba-info">
@@ -242,188 +636,145 @@
           <span class="ba-duration">2 appointments</span>
         </div>
       </div>
-
     </div>
 
-    <div style="text-align:center;margin-top:48px;">
-      <a href="transformations.html" class="btn btn-gold magnetic"><span>See All Transformations</span></a>
+    <div style="text-align:center;margin-top:56px;">
+      <a href="transformations.html" class="btn btn-gold magnetic"><span>View All 50+ Transformations →</span></a>
     </div>
   </div>
 </section>
 
-<!-- ══ SERVICES STRIP ══ -->
+<!-- ══ SERVICES ══ -->
 <section class="services-section" data-section="services">
   <div class="container">
-    <div class="section-label">
+    <div class="section-label gsap-fade-up">
       <span class="label-tag">What We Do</span>
     </div>
-    <h2 class="heading-xl gsap-fade-up" style="max-width:600px;color:var(--text-dark);" data-split="words">
-      Complete Dental Care Under One Roof
+    <h2 class="heading-xl gsap-fade-up" style="max-width:600px;color:var(--text-dark);">
+      Complete Dental Care<br>Under One Roof
     </h2>
+    <p class="gsap-fade-up" style="color:var(--text-muted);max-width:520px;margin-top:16px;font-size:1rem;line-height:1.8;">
+      From your child's first check-up to your dream smile makeover — everything you need, one trusted address in Ikeja.
+    </p>
 
     <div class="services-grid stagger-children" style="margin-top:60px;">
-
       <div class="service-card">
         <div class="service-card-number">01</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
-          <path d="M16 24C16 20 19 17 24 17C29 17 32 20 32 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M18 28C20 31 22 33 24 33C26 33 28 31 30 28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="20" cy="24" r="2" fill="currentColor"/>
-          <circle cx="28" cy="24" r="2" fill="currentColor"/>
-        </svg>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/><path d="M16 24C16 20 19 17 24 17C29 17 32 20 32 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 28C20 31 22 33 24 33C26 33 28 31 30 28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <h3>Teeth Whitening</h3>
-        <p>Up to 8 shades brighter in a single session. Professional, pain-free.</p>
+        <p>Up to 8 shades brighter in a single visit. Walk in dull, walk out glowing.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">02</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6C18 6 12 10 12 17C12 21 13.5 25 13 30C12.5 36 10 42 15 45C18 47 21 44 23 41C23.5 40 23.8 39 24 39C24.2 39 24.5 40 25 41C27 44 30 47 33 45C38 42 35.5 36 35 30C34.5 25 36 21 36 17C36 10 30 6 24 6Z" stroke="currentColor" stroke-width="2"/>
-          <line x1="20" y1="12" x2="20" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="24" y1="10" x2="24" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="28" y1="12" x2="28" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M24 6C18 6 12 10 12 17C12 21 13.5 25 13 30C12.5 36 10 42 15 45C18 47 21 44 23 41C23.5 40 23.8 39 24 39C24.2 39 24.5 40 25 41C27 44 30 47 33 45C38 42 35.5 36 35 30C34.5 25 36 21 36 17C36 10 30 6 24 6Z" stroke="currentColor" stroke-width="2"/><line x1="20" y1="12" x2="20" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="24" y1="10" x2="24" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="28" y1="12" x2="28" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <h3>Dental Implants</h3>
-        <p>Permanent replacements that look, feel and function like natural teeth.</p>
+        <p>Permanent, natural-looking replacement for missing teeth. Built to last a lifetime.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">03</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 20C10 20 14 16 20 18C24 19.5 24 24 24 24C24 24 24 19.5 28 18C34 16 38 20 38 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <rect x="8" y="14" width="8" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
-          <rect x="20" y="12" width="8" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
-          <rect x="32" y="14" width="8" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
-        </svg>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M10 20C10 20 14 16 20 18C24 19.5 24 24 24 24C24 24 24 19.5 28 18C34 16 38 20 38 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="8" y="14" width="8" height="20" rx="2" stroke="currentColor" stroke-width="2"/><rect x="20" y="12" width="8" height="24" rx="2" stroke="currentColor" stroke-width="2"/><rect x="32" y="14" width="8" height="20" rx="2" stroke="currentColor" stroke-width="2"/></svg>
         <h3>Braces &amp; Orthodontics</h3>
-        <p>Silver, ceramic, or gold-plated braces tailored to your lifestyle.</p>
+        <p>Silver, ceramic, or gold-plated. Straight teeth for every lifestyle and budget.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">04</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6C18 6 12 10 12 17C12 21 14 26 13 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M24 6C30 6 36 10 36 17C36 21 34 26 35 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="24" cy="20" r="6" stroke="currentColor" stroke-width="2"/>
-          <path d="M22 20H26M24 18V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <h3>Root Canal Treatment</h3>
-        <p>Save your natural tooth with precise, comfortable endodontic care.</p>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M14 18C14 14 18 11 24 11C30 11 34 14 34 18C34 22 32 24 32 28H16C16 24 14 22 14 18Z" stroke="currentColor" stroke-width="2"/><rect x="16" y="30" width="16" height="4" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Veneers</h3>
+        <p>Thin porcelain shells. Instantly reshape, recolour and perfect your smile.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">05</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10" y="14" width="13" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
-          <rect x="25" y="14" width="13" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
-          <path d="M23 24H25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <h3>Crowns &amp; Bridges</h3>
-        <p>Restore damaged or missing teeth with natural-looking restorations.</p>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M12 24C12 17 17.5 12 24 12C30.5 12 36 17 36 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15 30C15 33 19 36 24 36C29 36 33 33 33 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 26H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Scaling &amp; Polishing</h3>
+        <p>Professional deep clean that removes tartar and leaves your mouth feeling fresh.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">06</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 24C12 17 17.5 12 24 12C30.5 12 36 17 36 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M15 30C15 33 19 36 24 36C29 36 33 33 33 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M10 26H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <h3>Scaling &amp; Polishing</h3>
-        <p>Deep professional clean removing tartar and brightening your smile.</p>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 38C12 32 17.4 28 24 28C30.6 28 36 32 36 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Full smile makeovers designed around your face, goals, and newfound confidence.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">07</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 18C14 14 18 11 24 11C30 11 34 14 34 18C34 22 32 24 32 28H16C16 24 14 22 14 18Z" stroke="currentColor" stroke-width="2"/>
-          <rect x="16" y="30" width="16" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        <h3>Veneers</h3>
-        <p>Thin porcelain shells that transform the shape and colour of your smile.</p>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><rect x="10" y="14" width="13" height="20" rx="3" stroke="currentColor" stroke-width="2"/><rect x="25" y="14" width="13" height="20" rx="3" stroke="currentColor" stroke-width="2"/><path d="M23 24H25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Crowns &amp; Bridges</h3>
+        <p>Restore damaged or missing teeth with natural-looking, long-lasting restorations.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">08</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="18" r="8" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 38C12 32 17.4 28 24 28C30.6 28 36 32 36 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M20 16C20 16 22 20 24 20C26 20 28 16 28 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <h3>Cosmetic Dentistry</h3>
-        <p>Smile makeovers designed around your face, goals, and confidence.</p>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M24 6C18 6 12 10 12 17C12 21 14 26 13 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M24 6C30 6 36 10 36 17C36 21 34 26 35 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="20" r="6" stroke="currentColor" stroke-width="2"/><path d="M22 20H26M24 18V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Root Canal Treatment</h3>
+        <p>Save your natural tooth with precise, virtually painless endodontic care.</p>
       </div>
-
       <div class="service-card">
         <div class="service-card-number">09</div>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="18" cy="18" r="7" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="22" r="5" stroke="currentColor" stroke-width="2"/>
-          <path d="M8 38C8 33 12.5 30 18 30C21 30 23.7 31.2 25.5 33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M25.5 38C25.5 34 28.4 32 32 32C35.6 32 38.5 34 38.5 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none"><circle cx="18" cy="18" r="7" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="22" r="5" stroke="currentColor" stroke-width="2"/><path d="M8 38C8 33 12.5 30 18 30C21 30 23.7 31.2 25.5 33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M25.5 38C25.5 34 28.4 32 32 32C35.6 32 38.5 34 38.5 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <h3>Family Dentistry</h3>
-        <p>Comprehensive care for every age — from toddlers to grandparents.</p>
+        <p>Every age, every need — comprehensive care for the whole family, all in one place.</p>
       </div>
-
     </div>
 
-    <div style="text-align:center;margin-top:48px;">
-      <a href="services.html" class="btn btn-gold magnetic" style="display:inline-flex;"><span>View All Services</span></a>
+    <div style="text-align:center;margin-top:56px;">
+      <a href="services.html" class="btn btn-gold magnetic" style="display:inline-flex;"><span>Explore All Services →</span></a>
     </div>
   </div>
 </section>
 
-<!-- ══ WHY CHOOSE — SPLIT SECTIONS ══ -->
+<!-- ══ WHY CHOOSE US ══ -->
 <section class="why-section" data-section="about">
   <div class="container">
-
     <div class="section-label gsap-fade-up">
-      <span class="label-tag">Why Choose Us</span>
+      <span class="label-tag">Why Choose Smile Best</span>
     </div>
-    <h2 class="heading-xl gsap-fade-up" style="max-width:500px;margin-bottom:80px;">Why Thousands Trust Smile Best</h2>
+    <h2 class="heading-xl gsap-fade-up" style="max-width:540px;margin-bottom:72px;color:var(--text-dark);">
+      The Clinic Thousands of Lagosians Trust
+    </h2>
 
-    <!-- Split 1 -->
+    <!-- Split 1: Team photo -->
     <div class="why-split">
-      <div class="why-image-wrap parallax-img-wrap float-layer-1">
-        <img src="images/team-placeholder.jpg" alt="Smile Best Dental Team"
-             onerror="this.style.background='linear-gradient(135deg,#1A1A2E,#2a3a5e)';this.style.height='100%';this.removeAttribute('src')" />
-      </div>
-      <div class="why-content">
-        <div class="section-label">
-          <span class="label-tag gold">Expert Team</span>
+      <div class="why-image-wrap gsap-fade-left">
+        <img src="DPkJQpwkSpM-01.jpg" alt="Smile Best Dental expert team Ikeja">
+        <div class="why-image-badge">
+          <span class="badge-num">10+</span>
+          <span class="badge-txt">Years of<br>Excellence</span>
         </div>
-        <h3 class="heading-lg" style="color:var(--text-dark);margin-bottom:20px;" data-split="words">Expert Dental Care Since 2015</h3>
-        <p>A decade of transforming smiles across Ikeja and Lagos. Our orthodontists, endodontists, and cosmetic dentists work together under one roof to give you comprehensive care that's second to none in the region.</p>
-        <a href="about.html" class="btn btn-gold" style="margin-top:8px;"><span>Meet Our Team</span></a>
+      </div>
+      <div class="why-content gsap-fade-right">
+        <div class="section-label"><span class="label-tag gold">Expert Team</span></div>
+        <h3>Specialists Who Actually Care About Your Smile</h3>
+        <p>Our team of orthodontists, endodontists, and cosmetic dentists brings over a decade of combined expertise under one roof. We don't just fix teeth — we build confidence.</p>
+        <ul class="why-feature-list">
+          <li>Qualified specialists in every dental discipline</li>
+          <li>Modern equipment, international standards</li>
+          <li>Gentle approach — even for nervous patients</li>
+          <li>Free consultation on your first visit</li>
+        </ul>
+        <a href="about.html" class="btn btn-gold"><span>Meet Our Team →</span></a>
       </div>
     </div>
 
-    <!-- Split 2 -->
+    <!-- Split 2: Patient result photo -->
     <div class="why-split reverse">
-      <div class="why-image-wrap parallax-img-wrap float-layer-2" style="background:linear-gradient(135deg,#0C0C0C,#1A1A2E);display:flex;align-items:center;justify-content:center;">
-        <!-- Phone mockup -->
-        <div style="width:220px;height:420px;border-radius:32px;border:8px solid rgba(255,255,255,0.12);background:linear-gradient(160deg,#1A1A2E,#0C0C0C);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:0 40px 80px rgba(0,0,0,0.6),inset 0 0 0 1px rgba(255,255,255,0.06);">
-          <div style="width:60%;height:8px;background:rgba(255,255,255,0.08);border-radius:4px;"></div>
-          <div style="color:var(--gold);font-family:var(--font-display);font-size:1.1rem;letter-spacing:0.05em;text-align:center;padding:0 20px;line-height:1.4;">Book Your<br>Appointment</div>
-          <div style="width:80%;padding:12px 16px;background:rgba(201,150,58,0.1);border-radius:8px;border:1px solid rgba(201,150,58,0.2);">
-            <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px;letter-spacing:0.05em;">SELECT DATE</div>
-            <div style="font-size:13px;color:var(--white);">Tomorrow · 9:00 AM ✓</div>
-          </div>
-          <div style="width:80%;height:40px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--bg-dark);letter-spacing:0.1em;">CONFIRM</div>
+      <div class="why-image-wrap gsap-fade-right">
+        <img src="DZ3XBHFMQHT.webp" alt="Happy patient after dental treatment Lagos">
+        <div class="why-image-badge">
+          <span class="badge-num">5K+</span>
+          <span class="badge-txt">Happy<br>Patients</span>
         </div>
       </div>
-      <div class="why-content">
-        <div class="section-label">
-          <span class="label-tag gold">Convenience</span>
-        </div>
-        <h3 class="heading-lg" style="color:var(--text-dark);margin-bottom:20px;">Same-Day Appointments Available</h3>
-        <p>We know Lagos doesn't slow down. That's why we offer same-day appointments — because your smile shouldn't wait. Call us in the morning and you could be seen the same day.</p>
-        <a href="contact.html" class="btn btn-gold" style="margin-top:8px;"><span>Book Today</span></a>
+      <div class="why-content gsap-fade-left">
+        <div class="section-label"><span class="label-tag gold">Convenience</span></div>
+        <h3>Lagos Doesn't Slow Down. Neither Do We.</h3>
+        <p>We understand life in Lagos is busy. That's why we offer same-day appointments, flexible hours, and a clinic that feels nothing like a clinic — because your comfort matters from the moment you walk in.</p>
+        <ul class="why-feature-list">
+          <li>Same-day appointments — call in the morning, seen today</li>
+          <li>Open Monday to Saturday, 8am–6pm</li>
+          <li>Easy location by Caterpillar Bus Stop, Ogba</li>
+          <li>WhatsApp booking — fast and hassle-free</li>
+        </ul>
+        <a href="contact.html" class="btn btn-gold"><span>Book Today →</span></a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -451,63 +802,51 @@
   </div>
 </section>
 
-<!-- ══ INSTAGRAM GRID ══ -->
-<section class="instagram-section">
+<!-- ══ EXPERIENCE PHOTO MOSAIC ══ -->
+<section class="experience-section">
   <div class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
-      <div>
-        <div class="section-label"><span class="label-tag">Social Proof</span></div>
-        <h2 class="heading-xl text-white gsap-fade-up">As Seen on<br><span style="color:var(--gold);">@smilebestdental</span></h2>
-      </div>
-      <a href="https://www.instagram.com/smilebestdental" target="_blank" rel="noopener" class="btn btn-outline magnetic" style="align-self:flex-end;"><span>Follow Us · 28K</span></a>
+    <div class="section-label gsap-fade-up">
+      <span class="label-tag" style="color:var(--pink);">Inside Smile Best</span>
     </div>
+    <h2 class="gsap-fade-up" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5.5rem);font-weight:300;color:#fff;line-height:1;letter-spacing:-0.02em;">
+      A Clinic That Feels<br><em style="color:var(--gold);font-style:italic;">Nothing Like One.</em>
+    </h2>
+    <p class="gsap-fade-up" style="color:rgba(255,255,255,0.5);max-width:500px;margin-top:16px;font-size:1rem;line-height:1.8;">
+      Walk into a space designed for your comfort. Modern. Warm. Professional. The kind of dental experience you'll actually look forward to.
+    </p>
 
-    <div class="ig-grid">
-      <div class="ig-post">
-        <img src="DPkJQpwkSpM-03.jpg" alt="Smile Best Dental patient smile result" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;">
-        <div class="ig-post-overlay">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
+    <div class="experience-mosaic">
+      <div class="exp-tile exp-tile--large">
+        <img src="DPkJQpwkSpM-04.jpg" alt="Smile Best Dental Clinic interior Lagos" loading="lazy">
+        <div class="exp-tile-label">Our Clinic · Ogba, Ikeja</div>
       </div>
-      <div class="ig-post">
-        <img src="DPkJQpwkSpM-02.jpg" alt="Patient smile transformation" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;">
-        <div class="ig-post-overlay">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
+      <div class="exp-tile">
+        <img src="DGwxJEJIN9Y-01.jpg" alt="Patient treatment result" loading="lazy">
+        <div class="exp-tile-label">Patient Results</div>
       </div>
-      <div class="ig-post">
-        <img src="DGwxJEJIN9Y-02.jpg" alt="Braces result at Smile Best Dental" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;">
-        <div class="ig-post-overlay">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
+      <div class="exp-tile">
+        <img src="DJPSTwOId51.jpg" alt="Dental care Lagos" loading="lazy">
+        <div class="exp-tile-label">Expert Care</div>
       </div>
-      <div class="ig-post">
-        <img src="DZ3J4CJx2XF.webp" alt="Teeth veneers before and after" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;">
-        <div class="ig-post-overlay">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
+      <div class="exp-tile">
+        <img src="DZ3J4CJx2XF.webp" alt="Veneers result Smile Best Dental" loading="lazy">
+        <div class="exp-tile-label">Veneers</div>
       </div>
-      <div class="ig-post">
-        <img src="DPkJQpwkSpM-04.jpg" alt="Patient during dental treatment" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;">
-        <div class="ig-post-overlay">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
-      </div>
-      <div class="ig-post">
-        <img src="DPkJQpwkSpM-01.jpg" alt="Bright white smile result" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;">
-        <div class="ig-post-overlay">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
+      <div class="exp-tile">
+        <img src="unnamed (1).jpg" alt="Happy dental patient" loading="lazy">
+        <div class="exp-tile-label">Happy Patients</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ TESTIMONIALS MINI ══ -->
-<section style="background:var(--bg-light);padding:var(--section-pad) 0;overflow:hidden;">
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials-light-section">
   <div class="container" style="margin-bottom:40px;">
-    <div class="section-label"><span class="label-tag">Patient Stories</span></div>
-    <h2 class="heading-xl gsap-fade-up" style="max-width:500px;">What Our Patients Say</h2>
+    <div class="section-label gsap-fade-up"><span class="label-tag">Patient Stories</span></div>
+    <h2 class="heading-xl gsap-fade-up" style="max-width:520px;color:var(--text-dark);">
+      Don't Take Our Word for It.<br><em style="font-style:italic;color:var(--pink-dark);">Ask Our Patients.</em>
+    </h2>
   </div>
 
   <div style="padding:0 clamp(20px,5vw,60px);">
@@ -522,32 +861,26 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"I had so much fun getting my braces done. The orthodontist was so accommodating and professional throughout the entire process."</p>
+        <p class="testimonial-text">"I was terrified of dentists my whole life. The team here changed that completely. The most comfortable dental experience I've ever had."</p>
         <div class="testimonial-author">
           <div class="author-avatar">F</div>
-          <div>
-            <div class="author-name">Mr. Frances Anolue</div>
-            <div class="author-treatment">Braces · Orthodontics</div>
-          </div>
+          <div><div class="author-name">Mr. Frances Anolue</div><div class="author-treatment">Braces · Orthodontics</div></div>
         </div>
       </div>
 
-      <div class="testimonial-card dark">
-        <span class="quote-mark">"</span>
+      <div class="testimonial-card light">
+        <span class="quote-mark" style="color:var(--pink-dark);">"</span>
         <div class="star-row">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"The service was very good and there was no side effects after the teeth whitening. My teeth are so much brighter now!"</p>
+        <p class="testimonial-text">"My teeth are 8 shades whiter. I can't stop smiling at my own reflection! No side effects, no pain — just results. I'm telling everyone."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">S</div>
-          <div>
-            <div class="author-name">Samuel Kuti</div>
-            <div class="author-treatment">Teeth Whitening</div>
-          </div>
+          <div class="author-avatar" style="background:var(--pink-dark);">S</div>
+          <div><div class="author-name">Samuel Kuti</div><div class="author-treatment">Teeth Whitening</div></div>
         </div>
       </div>
 
@@ -560,40 +893,95 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"Smile Best Dental Clinic made me gain my confidence back. I smile without hesitation now. Forever grateful to this amazing team."</p>
+        <p class="testimonial-text">"Smile Best gave me my confidence back. I used to cover my mouth when I laughed. Now I smile in every photo. Forever grateful to this team."</p>
         <div class="testimonial-author">
           <div class="author-avatar">H</div>
-          <div>
-            <div class="author-name">Harrison Ayomide</div>
-            <div class="author-treatment">Cosmetic Dentistry</div>
-          </div>
+          <div><div class="author-name">Harrison Ayomide</div><div class="author-treatment">Cosmetic Dentistry</div></div>
         </div>
       </div>
 
-      <div class="testimonial-card dark">
-        <span class="quote-mark">"</span>
+      <div class="testimonial-card light">
+        <span class="quote-mark" style="color:var(--pink-dark);">"</span>
         <div class="star-row">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="testimonial-text">"I got my braces here. Very good. It is working very well and the results are already showing. Highly recommended to everyone!"</p>
+        <p class="testimonial-text">"Got my braces here. Results are already showing within months. The staff check on you regularly. Worth every kobo. Highly recommended."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">O</div>
-          <div>
-            <div class="author-name">Oke Success</div>
-            <div class="author-treatment">Braces · Orthodontics</div>
-          </div>
+          <div class="author-avatar" style="background:var(--pink-dark);">O</div>
+          <div><div class="author-name">Oke Success</div><div class="author-treatment">Braces · Orthodontics</div></div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <div style="text-align:center;margin-top:40px;">
-    <a href="testimonials.html" class="btn btn-gold magnetic"><span>Read All Reviews</span></a>
+  <div style="text-align:center;margin-top:48px;">
+    <a href="testimonials.html" class="btn btn-gold magnetic"><span>Read All Reviews →</span></a>
+  </div>
+</section>
+
+<!-- ══ INSTAGRAM GRID ══ -->
+<section class="instagram-section">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div class="section-label gsap-fade-up"><span class="label-tag" style="color:var(--pink);">Social Proof</span></div>
+        <h2 class="heading-xl text-white gsap-fade-up">As Seen on<br><span style="color:var(--gold);">@smilebestdental</span></h2>
+        <p style="color:rgba(255,255,255,0.45);margin-top:12px;font-size:0.95rem;">28,000+ followers watching real results unfold every day</p>
+      </div>
+      <a href="https://www.instagram.com/smilebestdental" target="_blank" rel="noopener" class="btn btn-outline magnetic" style="align-self:flex-end;"><span>Follow Us · 28K →</span></a>
+    </div>
+
+    <div class="ig-grid">
+      <div class="ig-post">
+        <img src="DPkJQpwkSpM-03.jpg" alt="Smile Best Dental patient smile result" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;" loading="lazy">
+        <div class="ig-post-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="ig-post">
+        <img src="DPkJQpwkSpM-02.jpg" alt="Patient smile transformation" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;" loading="lazy">
+        <div class="ig-post-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="ig-post">
+        <img src="DGwxJEJIN9Y-02.jpg" alt="Braces result at Smile Best Dental" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;" loading="lazy">
+        <div class="ig-post-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="ig-post">
+        <img src="DZ3J4CJx2XF.webp" alt="Teeth veneers before and after" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;" loading="lazy">
+        <div class="ig-post-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="ig-post">
+        <img src="DPkJQpwkSpM-04.jpg" alt="Patient during dental treatment" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;" loading="lazy">
+        <div class="ig-post-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="ig-post">
+        <img src="DPkJQpwkSpM-01.jpg" alt="Bright white smile result" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1;" loading="lazy">
+        <div class="ig-post-overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ══ -->
+<section class="cta-banner">
+  <div class="container">
+    <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:20px;">Your smile is waiting</p>
+    <h2>Ready to Love<br>Your Smile?</h2>
+    <p>Book your free consultation today. Same-day appointments available. No waiting. No overthinking. Just a brighter smile — starting now.</p>
+    <div class="cta-banner-btns">
+      <a href="tel:+2347038057170" class="btn-white">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.52-1.52a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call +234 703 805 7170
+      </a>
+      <a href="https://wa.me/2347038057170?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation%20at%20Smile%20Best%20Dental." target="_blank" rel="noopener" class="btn-white-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us Now
+      </a>
+      <a href="contact.html" class="btn-white-outline">Book Online →</a>
+    </div>
   </div>
 </section>
 
@@ -610,7 +998,7 @@
         </a>
         <p>Expert dental care since 2015. Transforming smiles across Ikeja and Lagos — one patient at a time.</p>
         <div style="display:flex;gap:12px;margin-top:20px;">
-          <a href="https://www.instagram.com/smilebestdental" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.25s ease;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg-dark)';" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';">
+          <a href="https://www.instagram.com/smilebestdental" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.25s ease;" onmouseover="this.style.background='var(--pink-dark)';this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
           <a href="https://wa.me/2347038057170" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.25s ease;" onmouseover="this.style.background='#25D366';this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';">
@@ -634,12 +1022,12 @@
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="services.html#whitening">Teeth Whitening</a></li>
-          <li><a href="services.html#implants">Dental Implants</a></li>
-          <li><a href="services.html#braces">Braces &amp; Orthodontics</a></li>
-          <li><a href="services.html#rootcanal">Root Canal</a></li>
-          <li><a href="services.html#veneers">Veneers</a></li>
-          <li><a href="services.html#cosmetic">Cosmetic Dentistry</a></li>
+          <li><a href="services.html">Teeth Whitening</a></li>
+          <li><a href="services.html">Dental Implants</a></li>
+          <li><a href="services.html">Braces &amp; Orthodontics</a></li>
+          <li><a href="services.html">Root Canal</a></li>
+          <li><a href="services.html">Veneers</a></li>
+          <li><a href="services.html">Cosmetic Dentistry</a></li>
         </ul>
       </div>
 
@@ -674,9 +1062,7 @@
 
 <!-- ══ WHATSAPP BUTTON ══ -->
 <a id="whatsapp-btn" href="https://wa.me/2347038057170?text=Hi%2C%20I'd%20like%20to%20book%20an%20appointment%20at%20Smile%20Best%20Dental%20Clinic%2C%20Ikeja." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <!-- ══ LIGHTBOX ══ -->
@@ -701,21 +1087,14 @@
 </div>
 
 <!-- ══ SCRIPTS ══ -->
-<!-- Lenis smooth scroll -->
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
-<!-- GSAP + ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<!-- Splitting.js -->
 <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
-<!-- VanillaTilt.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-<!-- CountUp.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js"></script>
 
-<!-- App Scripts -->
 <script src="js/three-hero.js"></script>
 <script src="js/counter.js"></script>
 <script src="js/animations.js"></script>

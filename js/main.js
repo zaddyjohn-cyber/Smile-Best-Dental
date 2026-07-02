@@ -473,12 +473,56 @@ function initHeroOrbit() {
   setTimeout(window.startHeroOrbit, 30000);
 }
 
+// ── ANIMATION FALLBACK ──
+// Reveals .gsap-fade-up etc. via IntersectionObserver even if GSAP CDN fails.
+function initAnimationFallback() {
+  // Mark DOM as JS-ready so CSS initial states (opacity:0) activate
+  document.documentElement.classList.add('js-ready');
+
+  var fadeEls = document.querySelectorAll('.gsap-fade-up, .gsap-fade-left, .gsap-fade-right, .gsap-scale-in');
+  var staggerEls = document.querySelectorAll('.stagger-children');
+
+  if (!fadeEls.length && !staggerEls.length) return;
+
+  var fadeObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(function(el) { fadeObs.observe(el); });
+
+  var staggerObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        staggerObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  staggerEls.forEach(function(el) { staggerObs.observe(el); });
+
+  // Hero elements — reveal after loader
+  setTimeout(function() {
+    var heroEls = document.querySelectorAll('.hero-eyebrow, .hero-subline, .hero-ctas, .scroll-indicator');
+    heroEls.forEach(function(el) {
+      el.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }, 2600);
+}
+
 // ── INIT ALL ──
 document.addEventListener('DOMContentLoaded', () => {
   // Loader must run first — before anything else that could throw
   initLoader();
+  initAnimationFallback();
   try { initLenis(); } catch(e) { console.warn('Lenis:', e); }
-  try { initCursor(); } catch(e) {}
   try { initScrollProgress(); } catch(e) {}
   try { initNavbar(); } catch(e) {}
   try { initMarquee(); } catch(e) {}

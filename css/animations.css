@@ -4,25 +4,20 @@
    ============================================ */
 
 /* ── GSAP INITIAL STATES ── */
-/* Set by GSAP — these are defaults before animation */
-.gsap-fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-}
+/* Guard with .js-ready so content is NEVER hidden if scripts fail */
+.js-ready .gsap-fade-up   { opacity: 0; transform: translateY(40px); }
+.js-ready .gsap-fade-left  { opacity: 0; transform: translateX(-40px); }
+.js-ready .gsap-fade-right { opacity: 0; transform: translateX(40px); }
+.js-ready .gsap-scale-in   { opacity: 0; transform: scale(0.9); }
 
-.gsap-fade-left {
-  opacity: 0;
-  transform: translateX(-40px);
-}
-
-.gsap-fade-right {
-  opacity: 0;
-  transform: translateX(40px);
-}
-
-.gsap-scale-in {
-  opacity: 0;
-  transform: scale(0.9);
+/* IntersectionObserver fallback — reveals even without GSAP */
+.gsap-fade-up.in-view,
+.gsap-fade-left.in-view,
+.gsap-fade-right.in-view,
+.gsap-scale-in.in-view {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
 .gsap-clip-reveal {
