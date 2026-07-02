@@ -17,9 +17,9 @@
 }
 
 .service-card {
-  background: linear-gradient(150deg, var(--primary) 0%, #2A0E1C 100%);
+  background: linear-gradient(150deg, var(--primary) 0%, #2A1608 100%);
   border-top: 2px solid transparent;
-  border-image: linear-gradient(90deg, var(--gold), var(--pink)) 1;
+  border-image: linear-gradient(90deg, var(--gold), var(--nude)) 1;
   padding: 40px 32px;
   border-radius: var(--radius);
   position: relative;
@@ -32,20 +32,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(232,164,184,0.08) 0%, rgba(201,150,58,0.06) 60%, transparent 100%);
+  background: linear-gradient(135deg, rgba(200,152,106,0.08) 0%, rgba(201,150,58,0.06) 60%, transparent 100%);
   opacity: 0;
   transition: opacity var(--transition);
 }
 
 .service-card:hover::before { opacity: 1; }
 .service-card:hover {
-  box-shadow: 0 20px 60px rgba(181,96,122,0.25), 0 4px 20px rgba(201,150,58,0.15);
+  box-shadow: 0 20px 60px rgba(139,94,58,0.25), 0 4px 20px rgba(201,150,58,0.15);
 }
 
 .service-card-number {
   font-family: var(--font-display);
   font-size: 4rem;
-  color: rgba(232,164,184,0.12);
+  color: rgba(200,152,106,0.12);
   font-weight: 700;
   line-height: 1;
   margin-bottom: 16px;
@@ -55,7 +55,7 @@
   width: 48px;
   height: 48px;
   margin-bottom: 20px;
-  color: var(--pink);
+  color: var(--nude);
 }
 
 .service-card h3 {
@@ -73,7 +73,7 @@
 
 /* ── BEFORE/AFTER CARDS ── */
 .transformation-section {
-  background: linear-gradient(180deg, #0C0808 0%, #1A0A10 50%, #0C0808 100%);
+  background: linear-gradient(180deg, #100C07 0%, #1A1008 50%, #100C07 100%);
   padding: var(--section-pad) 0;
 }
 
@@ -136,7 +136,7 @@
 
 .ba-divider {
   width: 3px;
-  background: linear-gradient(to bottom, var(--gold), var(--pink), var(--gold));
+  background: linear-gradient(to bottom, var(--gold), var(--nude), var(--gold));
   flex-shrink: 0;
   position: relative;
   z-index: 2;
@@ -270,14 +270,14 @@
 }
 
 .testimonial-card.dark {
-  background: linear-gradient(135deg, var(--primary) 0%, #2E0E1E 100%);
-  border: 1px solid rgba(232,164,184,0.1);
+  background: linear-gradient(135deg, var(--primary) 0%, #2E1A08 100%);
+  border: 1px solid rgba(200,152,106,0.1);
 }
 
 .testimonial-card.light {
-  background: var(--pink-light);
+  background: var(--nude-light);
   color: var(--text-dark);
-  border: 1px solid rgba(181,96,122,0.12);
+  border: 1px solid rgba(139,94,58,0.12);
 }
 
 .quote-mark {
@@ -370,7 +370,7 @@
 /* ── INSTAGRAM GRID ── */
 .instagram-section {
   padding: var(--section-pad) 0;
-  background: linear-gradient(160deg, #0C0808 0%, #200B14 60%, #0C0808 100%);
+  background: linear-gradient(160deg, #100C07 0%, #1A1008 60%, #100C07 100%);
 }
 
 .ig-grid {
@@ -418,7 +418,7 @@
 /* ── WHY CHOOSE SECTIONS ── */
 .why-section {
   padding: var(--section-pad) 0;
-  background: linear-gradient(160deg, var(--pink-light) 0%, #fff 50%, var(--pink-light) 100%);
+  background: linear-gradient(160deg, var(--nude-light) 0%, #fff 50%, var(--nude-light) 100%);
 }
 
 .why-split {
@@ -475,7 +475,7 @@
 /* ── PULL QUOTE ── */
 .pull-quote-section {
   padding: var(--section-pad) 0;
-  background: linear-gradient(135deg, #1A0A10 0%, var(--primary) 50%, #1A0A10 100%);
+  background: linear-gradient(135deg, #1A1008 0%, var(--primary) 50%, #1A1008 100%);
 }
 
 .pull-quote {
@@ -551,7 +551,7 @@
 
 /* ── CONTACT FORM ── */
 .contact-section {
-  background: linear-gradient(180deg, #0C0808 0%, #1E0A14 100%);
+  background: linear-gradient(180deg, #100C07 0%, #1A1008 100%);
   padding: var(--section-pad) 0;
 }
 
@@ -562,7 +562,7 @@
 }
 
 .contact-form-side {
-  background: linear-gradient(160deg, var(--pink-light) 0%, #fff 100%);
+  background: linear-gradient(160deg, var(--nude-light) 0%, #fff 100%);
   padding: clamp(48px, 8vw, 100px);
 }
 

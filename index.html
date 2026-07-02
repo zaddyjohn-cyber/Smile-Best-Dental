@@ -48,7 +48,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(30,13,22,0.5) 100%);
+      background: linear-gradient(to bottom, transparent 40%, rgba(30,20,10,0.5) 100%);
       pointer-events: none;
     }
     .proof-strip-overlay {
@@ -57,17 +57,17 @@
       justify-content: center;
       min-width: 280px;
       padding: 48px 40px;
-      background: linear-gradient(135deg, var(--primary) 0%, #2E0E20 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, #2E1A08 100%);
       text-align: center;
       flex-direction: column;
       gap: 20px;
-      border-left: 1px solid rgba(232,164,184,0.15);
+      border-left: 1px solid rgba(200,152,106,0.15);
     }
     .proof-strip-stat {
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 300;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--pink) 100%);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--nude) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       line-height: 1;
     }
@@ -85,9 +85,9 @@
 
     /* Feature Badges row */
     .trust-badges {
-      background: var(--pink-light);
+      background: var(--nude-light);
       padding: 40px 0;
-      border-bottom: 1px solid rgba(181,96,122,0.12);
+      border-bottom: 1px solid rgba(139,94,58,0.12);
     }
     .trust-badges-row {
       display: flex;
@@ -104,7 +104,7 @@
     }
     .trust-badge svg {
       width: 28px; height: 28px;
-      color: var(--pink-dark);
+      color: var(--nude-dark);
       flex-shrink: 0;
     }
     .trust-badge-text strong {
@@ -119,13 +119,13 @@
     }
     .trust-badge-sep {
       width: 1px; height: 32px;
-      background: rgba(181,96,122,0.2);
+      background: rgba(139,94,58,0.2);
     }
 
     /* Photo Experience Mosaic */
     .experience-section {
       padding: var(--section-pad) 0;
-      background: linear-gradient(180deg, #0C0808 0%, #200B14 100%);
+      background: linear-gradient(180deg, #100C07 0%, #1A1008 100%);
     }
     .experience-mosaic {
       display: grid;
@@ -154,7 +154,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(30,13,22,0.7) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(30,20,10,0.7) 0%, transparent 50%);
       pointer-events: none;
     }
     .exp-tile-label {
@@ -196,14 +196,14 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(232,164,184,0.12) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(200,152,106,0.12) 0%, transparent 60%);
       z-index: 1;
       pointer-events: none;
     }
     .why-image-badge {
       position: absolute;
       bottom: 24px; right: 24px;
-      background: linear-gradient(135deg, var(--gold), var(--pink-dark));
+      background: linear-gradient(135deg, var(--gold), var(--nude-dark));
       color: #fff;
       padding: 14px 20px;
       border-radius: 8px;
@@ -253,7 +253,7 @@
     .why-feature-list li::before {
       content: '';
       width: 20px; height: 20px;
-      background: linear-gradient(135deg, var(--gold), var(--pink));
+      background: linear-gradient(135deg, var(--gold), var(--nude));
       border-radius: 50%;
       flex-shrink: 0;
       margin-top: 2px;
@@ -277,7 +277,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, var(--pink-dark) 0%, #C9963A 50%, var(--pink-dark) 100%);
+      background: linear-gradient(135deg, var(--nude-dark) 0%, #C9963A 50%, var(--nude-dark) 100%);
       z-index: 0;
     }
     .cta-banner::after {
@@ -317,7 +317,7 @@
     }
     .btn-white {
       background: #fff;
-      color: var(--pink-dark);
+      color: var(--nude-dark);
       padding: 16px 36px;
       border-radius: 2px;
       font-weight: 600;
@@ -356,7 +356,7 @@
 
     /* Testimonials light section */
     .testimonials-light-section {
-      background: linear-gradient(160deg, var(--pink-light) 0%, #fff 50%, var(--pink-light) 100%);
+      background: linear-gradient(160deg, var(--nude-light) 0%, #fff 50%, var(--nude-light) 100%);
       padding: var(--section-pad) 0;
       overflow: hidden;
     }
@@ -593,7 +593,7 @@
 <section class="transformation-section section-pad" data-section="transformations">
   <div class="container">
     <div class="section-label gsap-fade-up">
-      <span class="label-tag" style="color:var(--pink);">Real Results</span>
+      <span class="label-tag" style="color:var(--nude);">Real Results</span>
     </div>
     <h2 class="gsap-fade-up" style="font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);font-weight:300;color:#fff;line-height:0.92;letter-spacing:-0.03em;margin-bottom:16px;">
       Before &amp; After.<br><em style="color:var(--gold);font-style:italic;">The Proof is in the Smile.</em>
@@ -811,7 +811,7 @@
 <section class="experience-section">
   <div class="container">
     <div class="section-label gsap-fade-up">
-      <span class="label-tag" style="color:var(--pink);">Inside Smile Best</span>
+      <span class="label-tag" style="color:var(--nude);">Inside Smile Best</span>
     </div>
     <h2 class="gsap-fade-up" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5.5rem);font-weight:300;color:#fff;line-height:1;letter-spacing:-0.02em;">
       A Clinic That Feels<br><em style="color:var(--gold);font-style:italic;">Nothing Like One.</em>
@@ -850,7 +850,7 @@
   <div class="container" style="margin-bottom:40px;">
     <div class="section-label gsap-fade-up"><span class="label-tag">Patient Stories</span></div>
     <h2 class="heading-xl gsap-fade-up" style="max-width:520px;color:var(--text-dark);">
-      Don't Take Our Word for It.<br><em style="font-style:italic;color:var(--pink-dark);">Ask Our Patients.</em>
+      Don't Take Our Word for It.<br><em style="font-style:italic;color:var(--nude-dark);">Ask Our Patients.</em>
     </h2>
   </div>
 
@@ -874,7 +874,7 @@
       </div>
 
       <div class="testimonial-card light">
-        <span class="quote-mark" style="color:var(--pink-dark);">"</span>
+        <span class="quote-mark" style="color:var(--nude-dark);">"</span>
         <div class="star-row">
           <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -884,7 +884,7 @@
         </div>
         <p class="testimonial-text">"My teeth are 8 shades whiter. I can't stop smiling at my own reflection! No side effects, no pain — just results. I'm telling everyone."</p>
         <div class="testimonial-author">
-          <div class="author-avatar" style="background:var(--pink-dark);">S</div>
+          <div class="author-avatar" style="background:var(--nude-dark);">S</div>
           <div><div class="author-name">Samuel Kuti</div><div class="author-treatment">Teeth Whitening</div></div>
         </div>
       </div>
@@ -906,7 +906,7 @@
       </div>
 
       <div class="testimonial-card light">
-        <span class="quote-mark" style="color:var(--pink-dark);">"</span>
+        <span class="quote-mark" style="color:var(--nude-dark);">"</span>
         <div class="star-row">
           <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24" style="fill:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -916,7 +916,7 @@
         </div>
         <p class="testimonial-text">"Got my braces here. Results are already showing within months. The staff check on you regularly. Worth every kobo. Highly recommended."</p>
         <div class="testimonial-author">
-          <div class="author-avatar" style="background:var(--pink-dark);">O</div>
+          <div class="author-avatar" style="background:var(--nude-dark);">O</div>
           <div><div class="author-name">Oke Success</div><div class="author-treatment">Braces · Orthodontics</div></div>
         </div>
       </div>
@@ -934,7 +934,7 @@
   <div class="container">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
       <div>
-        <div class="section-label gsap-fade-up"><span class="label-tag" style="color:var(--pink);">Social Proof</span></div>
+        <div class="section-label gsap-fade-up"><span class="label-tag" style="color:var(--nude);">Social Proof</span></div>
         <h2 class="heading-xl text-white gsap-fade-up">As Seen on<br><span style="color:var(--gold);">@smilebestdental</span></h2>
         <p style="color:rgba(255,255,255,0.45);margin-top:12px;font-size:0.95rem;">28,000+ followers watching real results unfold every day</p>
       </div>
@@ -1003,7 +1003,7 @@
         </a>
         <p>Expert dental care since 2015. Transforming smiles across Ikeja and Lagos — one patient at a time.</p>
         <div style="display:flex;gap:12px;margin-top:20px;">
-          <a href="https://www.instagram.com/smilebestdental" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.25s ease;" onmouseover="this.style.background='var(--pink-dark)';this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';">
+          <a href="https://www.instagram.com/smilebestdental" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.25s ease;" onmouseover="this.style.background='var(--nude-dark)';this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
           <a href="https://wa.me/2347038057170" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.25s ease;" onmouseover="this.style.background='#25D366';this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';">

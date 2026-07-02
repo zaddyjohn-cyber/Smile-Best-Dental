@@ -7,19 +7,19 @@
 
 /* ── DESIGN TOKENS ── */
 :root {
-  --bg-dark: #0C0808;          /* deep near-black with the faintest warm rose tint */
-  --bg-light: #FDF0F5;         /* blush pink — replaces the old cream */
-  --primary: #1E0D16;          /* dark mauve (replaces dark navy) */
+  --bg-dark: #100C07;          /* deep warm espresso brown */
+  --bg-light: #F0E4D8;         /* warm nude/blush beige */
+  --primary: #2C1A0E;          /* dark warm brown */
   --gold: #C9963A;
   --gold-light: #E0B05A;
-  --pink: #E8A4B8;             /* soft rose pink */
-  --pink-dark: #B5607A;        /* deeper dusty rose */
-  --pink-light: #FBE8F0;       /* very pale blush — light section tint */
+  --nude: #C8986A;             /* warm caramel/sand accent */
+  --nude-dark: #8B5E3A;        /* warm terracotta/sienna */
+  --nude-light: #FAF0E6;       /* warm cream — light section tint */
   --blue: #4A90D9;
-  --white: #FFFFFF;
-  --text-dark: #1A0D14;        /* very dark mauve instead of pure black */
-  --text-muted: #7A5060;       /* warm muted — hint of rose */
-  --text-muted-light: #AA8898; /* light warm muted */
+  --white: #FFFAF6;            /* warm white */
+  --text-dark: #2C1A0C;        /* dark warm brown */
+  --text-muted: #7A5840;       /* warm mid-brown taupe */
+  --text-muted-light: #A8805E; /* warm sand */
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-heading: 'Playfair Display', Georgia, serif;
@@ -257,7 +257,7 @@ ul { list-style: none; }
 
 /* Utility bar */
 #nav-utility {
-  background: linear-gradient(90deg, var(--primary) 0%, #2A0D1A 50%, var(--primary) 100%);
+  background: linear-gradient(90deg, var(--primary) 0%, #2A1608 50%, var(--primary) 100%);
   padding: 8px clamp(20px, 5vw, 60px);
   display: flex;
   align-items: center;
@@ -388,7 +388,7 @@ ul { list-style: none; }
 
 /* ── MARQUEE STRIP ── */
 .marquee-strip {
-  background: linear-gradient(90deg, var(--pink-dark) 0%, var(--gold) 50%, var(--pink-dark) 100%);
+  background: linear-gradient(90deg, var(--nude-dark) 0%, var(--gold) 50%, var(--nude-dark) 100%);
   padding: 16px 0;
   overflow: hidden;
   white-space: nowrap;
@@ -438,7 +438,7 @@ ul { list-style: none; }
 .gold-divider {
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, var(--gold), var(--pink));
+  background: linear-gradient(90deg, var(--gold), var(--nude));
   margin: 24px 0;
 }
 
@@ -446,9 +446,9 @@ ul { list-style: none; }
 
 /* ── FOOTER ── */
 #footer {
-  background: linear-gradient(180deg, #1A0A10 0%, #0C0808 100%);
+  background: linear-gradient(180deg, #1A1008 0%, #100C07 100%);
   padding: 80px 0 0;
-  border-top: 1px solid rgba(232, 164, 184, 0.2);
+  border-top: 1px solid rgba(200, 152, 106, 0.2);
 }
 
 .footer-grid {
@@ -635,10 +635,10 @@ ul { list-style: none; }
 
 /* ── STATS BAR ── */
 .stats-bar {
-  background: linear-gradient(135deg, var(--primary) 0%, #2E0E20 50%, var(--primary) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, #2E1A08 50%, var(--primary) 100%);
   padding: 60px 0;
-  border-top: 1px solid rgba(232,164,184,0.18);
-  border-bottom: 1px solid rgba(232,164,184,0.18);
+  border-top: 1px solid rgba(200,152,106,0.18);
+  border-bottom: 1px solid rgba(200,152,106,0.18);
 }
 
 .stats-grid {
@@ -660,14 +660,14 @@ ul { list-style: none; }
   top: 25%;
   height: 50%;
   width: 1px;
-  background: linear-gradient(to bottom, rgba(232,164,184,0.25), rgba(201,150,58,0.25));
+  background: linear-gradient(to bottom, rgba(200,152,106,0.25), rgba(201,150,58,0.25));
 }
 
 .stat-number {
   font-family: var(--font-display);
   font-size: clamp(3rem, 5vw, 5rem);
   font-weight: 300;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--pink) 100%);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--nude) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
