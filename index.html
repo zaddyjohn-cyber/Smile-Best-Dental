@@ -3,10 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smile Best Dental Clinic — Ogba, Ikeja, Lagos</title>
+  <meta name="theme-color" content="#071C17" />
+
+  <!-- SEO -->
+  <title>Smile Best Dental Clinic | Teeth Whitening, Implants &amp; Braces in Ogba, Lagos</title>
+  <meta name="description" content="Smile Best Dental Clinic in Ogba, Ikeja, Lagos. Expert teeth whitening, dental implants, veneers, braces and orthodontics. Book your appointment today — open Mon-Sat." />
+  <meta name="keywords" content="dental clinic Lagos, teeth whitening Ikeja, dental implants Ogba, veneers Lagos, orthodontics Ikeja, braces Lagos, dentist near me Lagos" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zaddyjohn-cyber.github.io/Smile-Best-Dental/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Smile Best Dental Clinic | Ogba, Ikeja, Lagos" />
+  <meta property="og:description" content="Advanced dental care in the heart of Ikeja. Whitening, implants, veneers, braces and general dentistry. Open Mon-Sat." />
+  <meta property="og:url" content="https://zaddyjohn-cyber.github.io/Smile-Best-Dental/" />
+  <meta property="og:image" content="DGwxJEJIN9Y-01.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Smile Best Dental Clinic | Ogba, Lagos" />
+  <meta name="twitter:description" content="Advanced dental care in the heart of Ikeja. Whitening, implants, veneers, braces." />
+
+  <!-- Local Business Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "name": "Smile Best Dental Clinic",
+    "description": "Expert dental care including teeth whitening, implants, veneers, orthodontics and general dentistry in Ogba, Ikeja, Lagos.",
+    "url": "https://zaddyjohn-cyber.github.io/Smile-Best-Dental/",
+    "telephone": "+2348012345678",
+    "email": "info@smilebestdental.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ogba",
+      "addressLocality": "Ikeja",
+      "addressRegion": "Lagos",
+      "addressCountry": "NG"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 6.6018,
+      "longitude": 3.3515
+    },
+    "openingHours": ["Mo-Sa 08:00-18:00"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "320"
+    },
+    "priceRange": "₦₦",
+    "image": "DGwxJEJIN9Y-01.jpg"
+  }
+  </script>
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="DGwxJEJIN9Y-01.jpg" as="image" />
+  <link rel="preload" href="DPkJQpwkSpM-02.jpg" as="image" />
+
+  <!-- Fonts: only weights we actually use -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -282,9 +340,12 @@
     .orbit-img-wrap {
       position: absolute;
       will-change: transform;
+      /* width/height set inline by JS so the wrapper has real dimensions */
     }
+    /* Override global img { max-width:100% } which collapses images inside zero-width arms */
     .orbit-img-wrap img {
       display: block;
+      max-width: none !important;
       object-fit: cover;
       border-radius: var(--r-sm);
       box-shadow: 0 6px 28px rgba(0,0,0,0.65), 0 0 0 1.5px rgba(201,150,58,0.4);
@@ -929,70 +990,186 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      .section-pad, .services-section, .results-section, .testimonials-section,
+      .hero-left { padding: 120px 40px 80px 48px; }
+      .services-section, .results-section, .testimonials-section,
       .insta-section, .cta-section, footer { padding-left: 40px; padding-right: 40px; }
       .stats-section { padding: 60px 40px; }
       .about-content { padding: 80px 40px; }
       .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 280px 160px; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { height: 420px; }
-      .orbit-stage { width: 90vw; height: 90vw; }
-      .hero-left { padding: 120px 28px 60px; }
-      .bento-grid { grid-template-columns: 1fr; grid-template-rows: 280px 240px 240px 160px 120px; }
+
+    /* Hamburger menu (mobile nav) */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 290;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .nav-mobile-menu a.mobile-cta {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 14px 40px;
+      border-radius: var(--r-xl);
+      font-size: 1.1rem;
+    }
+    .nav-mobile-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none; border: none;
+      color: var(--white);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    @media (max-width: 900px) {
+      /* Hero stacks: orbit on top, text below */
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        min-height: 100dvh;
+      }
+      .hero-right {
+        order: -1;
+        height: min(92vw, 460px);
+        padding: 20px 0 0;
+      }
+      .orbit-stage {
+        width: min(88vw, 420px);
+        height: min(88vw, 420px);
+      }
+      .hero-left {
+        padding: 32px 24px 56px;
+      }
+      .hero-headline {
+        font-size: clamp(2.4rem, 7vw, 4rem);
+      }
+      .hero-sub { max-width: 100%; }
+      .hero-stats-row { gap: 24px; }
+
+      /* Nav */
+      nav { padding: 16px 20px; }
+      nav.scrolled { padding: 12px 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* Sections */
+      .services-section, .results-section, .testimonials-section,
+      .cta-section, footer { padding-left: 20px; padding-right: 20px; }
+      .insta-section { padding: 60px 20px; }
+      .stats-section { padding: 60px 20px; }
+      .about-content { padding: 64px 20px; }
+
+      .bento-grid { grid-template-columns: 1fr; grid-template-rows: 260px 220px 220px 140px 110px; }
       .bc-1 { grid-column: 1; grid-row: 1; }
       .bc-2 { grid-column: 1; grid-row: 2; }
       .bc-3 { grid-column: 1; grid-row: 3; }
       .bc-4 { grid-column: 1; grid-row: 4; }
       .bc-5 { grid-column: 1; grid-row: 5; }
       .services-header { flex-direction: column; align-items: flex-start; }
+
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stat-item { border-right: none; border-bottom: 1px solid var(--mint-mid); }
+      .stat-item:nth-child(odd) { border-right: 1px solid var(--mint-mid); }
+
       .ba-grid { grid-template-columns: 1fr; }
+      .ba-imgs { height: 220px; }
+
       .testi-grid { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
       .tc-featured { grid-column: 1; grid-row: 1; }
+      .testi-card { padding: 28px; }
+
       .insta-grid { grid-template-columns: repeat(3, 1fr); }
-      .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      nav { padding: 16px 20px; }
-      nav.scrolled { padding: 12px 20px; }
-      .nav-links { display: none; }
-      .services-section, .results-section, .testimonials-section,
-      .cta-section, footer { padding-left: 20px; padding-right: 20px; }
-      .insta-section { padding: 60px 20px; }
-      .stats-section { padding: 60px 20px; }
-      .about-content { padding: 80px 20px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: 1 / -1; }
+      footer { padding: 48px 20px 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+      .cta-section { padding: 80px 20px; }
+      .cta-ghost { font-size: clamp(5rem, 20vw, 12rem); }
+    }
+
+    @media (max-width: 480px) {
+      .orbit-stage { width: 84vw; height: 84vw; }
+      .hero-right { height: min(84vw, 380px); }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .insta-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav id="nav">
-    <div class="nav-logo">Smile<span>Best</span></div>
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav-logo" aria-label="Smile Best Dental Clinic home">Smile<span>Best</span></a>
     <ul class="nav-links">
       <li><a href="#services">Treatments</a></li>
       <li><a href="#results">Results</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="tel:+2348012345678" class="nav-cta">Book Now</a></li>
     </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
+  <!-- MOBILE FULL-SCREEN MENU -->
+  <div class="nav-mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+    <button class="nav-mobile-close" id="mobileClose" aria-label="Close menu">&#x2715;</button>
+    <a href="#services" class="mobile-link">Treatments</a>
+    <a href="#results" class="mobile-link">Results</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="tel:+2348012345678" class="mobile-cta">Book Now</a>
+  </div>
+
   <!-- HERO -->
-  <section class="hero" id="home">
+  <section class="hero" id="home" aria-label="Hero">
     <div class="hero-left">
-      <p class="hero-tag" id="htag">Smile Best Dental Clinic · Ogba, Lagos</p>
+      <p class="hero-tag" id="htag">Smile Best Dental Clinic · Ogba, Ikeja, Lagos</p>
       <h1 class="hero-headline" id="hhead">
         Your Best<br>
         <em>Smile</em>
         Starts Here
       </h1>
       <p class="hero-sub" id="hsub">
-        Advanced dental care delivered with warmth. From routine check-ups to complete smile transformations in the heart of Ikeja.
+        Advanced dental care in Ikeja, Lagos. Teeth whitening, implants, veneers, braces and general dentistry — all under one roof.
       </p>
       <div class="hero-actions" id="hacts">
-        <a href="tel:+2348012345678" class="btn-primary">Book an Appointment</a>
+        <a href="tel:+2348012345678" class="btn-primary" aria-label="Call to book an appointment">Book an Appointment</a>
         <a href="#results" class="btn-ghost">See Results</a>
       </div>
       <div class="hero-stats-row" id="hstats">
@@ -1349,6 +1526,16 @@
       nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
+    // Mobile menu
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    function openMenu() { mobileMenu.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); }
+    function closeMenu() { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); }
+    hamburger.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
     // Hero text entrance
     ['htag','hhead','hsub','hacts','hstats'].forEach((id, i) => {
       const el = document.getElementById(id);
@@ -1362,16 +1549,14 @@
     document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
     // ── ORBIT ──
-    // ring 1 (inner, 23% radius): 5 photos, CW, 20s
-    // ring 2 (outer, 36% radius): 5 photos, CCW, 30s
     const orbitItems = [
-      // inner ring
+      // inner ring (ring 1): 5 photos CW
       { src: 'DGwxJEJIN9Y-01.jpg',  label: 'Smile Best Dental', ring: 1 },
       { src: 'DPkJQpwkSpM-01.jpg',  label: 'Whitening',          ring: 1 },
       { src: 'DGwxJEJIN9Y-02.jpg',  label: 'Orthodontics',       ring: 1 },
       { src: 'DPkJQpwkSpM-04.jpg',  label: 'Veneers',            ring: 1 },
       { src: 'unnamed (2).jpg',      label: 'Our Clinic',         ring: 1 },
-      // outer ring
+      // outer ring (ring 2): 5 photos CCW
       { src: 'DPkJQpwkSpM-02.jpg',  label: 'Whitening Results',  ring: 2 },
       { src: 'DZ3J4CJx2XF.webp',    label: 'Smile Makeover',     ring: 2 },
       { src: 'DPkJQpwkSpM-03.jpg',  label: 'Implants',           ring: 2 },
@@ -1382,9 +1567,11 @@
     const stage = document.getElementById('orbitStage');
     const stageSize = stage.offsetWidth;
 
+    // Scale image sizes down on small screens
+    const scale = Math.min(1, stageSize / 520);
     const ringCfg = {
-      1: { radiusPct: 0.23, w: 90,  h: 100, dur: 22, dir:  1 },
-      2: { radiusPct: 0.37, w: 105, h: 115, dur: 34, dir: -1 },
+      1: { radiusPct: 0.23, w: Math.round(90 * scale),  h: Math.round(100 * scale), dur: 22, dir:  1 },
+      2: { radiusPct: 0.37, w: Math.round(105 * scale), h: Math.round(115 * scale), dur: 34, dir: -1 },
     };
 
     // Group items by ring and spread evenly
@@ -1407,16 +1594,21 @@
 
         const wrap = document.createElement('div');
         wrap.className = 'orbit-img-wrap';
+        // Give the wrapper explicit dimensions so max-width:100% on img works correctly
+        wrap.style.width  = cfg.w + 'px';
+        wrap.style.height = cfg.h + 'px';
         wrap.style.left = radiusPx + 'px';
         wrap.style.top  = (-cfg.h / 2) + 'px';
         wrap.style.transform = `rotate(${-startDeg}deg)`;
 
         const img = document.createElement('img');
         img.src = item.src;
-        img.alt = item.label;
+        img.alt = item.label + ' - Smile Best Dental Clinic Lagos';
         img.loading = 'eager';
-        img.style.width  = cfg.w + 'px';
-        img.style.height = cfg.h + 'px';
+        img.width  = cfg.w;
+        img.height = cfg.h;
+        img.style.width  = '100%';
+        img.style.height = '100%';
 
         const chip = document.createElement('div');
         chip.className = 'orbit-chip';
