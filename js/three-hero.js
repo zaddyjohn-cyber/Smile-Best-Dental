@@ -209,4 +209,6 @@ function initThreeHero() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', initThreeHero);
+document.addEventListener('DOMContentLoaded', () => {
+  try { initThreeHero(); } catch(e) { console.warn('Three.js hero:', e); }
+});

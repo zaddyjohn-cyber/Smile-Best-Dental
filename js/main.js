@@ -7,23 +7,37 @@
 let lenis;
 
 function initLenis() {
-  lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    direction: 'vertical',
-    gestureDirection: 'vertical',
-    smooth: true,
-    smoothTouch: false,
-    touchMultiplier: 2,
-  });
+  try {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
 
-  lenis.on('scroll', ScrollTrigger.update);
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+    }
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-
-  gsap.ticker.lagSmoothing(0);
+    if (typeof gsap !== 'undefined') {
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      // Fallback RAF loop for Lenis without GSAP
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  } catch (e) {
+    console.warn('Lenis failed to init:', e);
+  }
 }
 
 // ── CUSTOM CURSOR ──
@@ -149,10 +163,28 @@ function initNavbar() {
 }
 
 // ── LOADER ──
-function initLoader() {
+function revealPage() {
   const loader = document.getElementById('loader');
   const curtainLeft = document.getElementById('curtain-left');
   const curtainRight = document.getElementById('curtain-right');
+  if (!loader || loader.style.display === 'none') return;
+
+  loader.style.transition = 'opacity 0.5s ease';
+  loader.style.opacity = '0';
+
+  setTimeout(() => {
+    loader.style.display = 'none';
+    if (curtainLeft) curtainLeft.classList.add('open');
+    if (curtainRight) curtainRight.classList.add('open');
+    setTimeout(() => {
+      if (curtainLeft) curtainLeft.style.display = 'none';
+      if (curtainRight) curtainRight.style.display = 'none';
+    }, 900);
+  }, 500);
+}
+
+function initLoader() {
+  const loader = document.getElementById('loader');
   if (!loader) return;
 
   // Counter animation
@@ -168,21 +200,10 @@ function initLoader() {
   }, 40);
 
   // Reveal after tooth draws
-  setTimeout(() => {
-    loader.style.transition = 'opacity 0.5s ease';
-    loader.style.opacity = '0';
+  setTimeout(revealPage, 2200);
 
-    setTimeout(() => {
-      loader.style.display = 'none';
-      if (curtainLeft) curtainLeft.classList.add('open');
-      if (curtainRight) curtainRight.classList.add('open');
-
-      setTimeout(() => {
-        if (curtainLeft) curtainLeft.style.display = 'none';
-        if (curtainRight) curtainRight.style.display = 'none';
-      }, 900);
-    }, 500);
-  }, 2200);
+  // Hard fallback — force reveal after 6s no matter what
+  setTimeout(revealPage, 6000);
 }
 
 // ── MARQUEE ──
@@ -362,14 +383,15 @@ function initContactForm() {
 
 // ── INIT ALL ──
 document.addEventListener('DOMContentLoaded', () => {
-  initLenis();
-  initCursor();
-  initScrollProgress();
-  initNavbar();
+  // Loader must run first — before anything else that could throw
   initLoader();
-  initMarquee();
-  initDeviceParallax();
-  initLightbox();
-  initFilters();
-  initContactForm();
+  try { initLenis(); } catch(e) { console.warn('Lenis:', e); }
+  try { initCursor(); } catch(e) {}
+  try { initScrollProgress(); } catch(e) {}
+  try { initNavbar(); } catch(e) {}
+  try { initMarquee(); } catch(e) {}
+  try { initDeviceParallax(); } catch(e) {}
+  try { initLightbox(); } catch(e) {}
+  try { initFilters(); } catch(e) {}
+  try { initContactForm(); } catch(e) {}
 });
