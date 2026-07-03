@@ -1411,6 +1411,23 @@
     margin-top: 4px;
   }
 
+  /* ── FAQ ── */
+  .faq-list { display:flex; flex-direction:column; gap:12px; }
+  .faq-item { border:1.5px solid var(--cream-dark); border-radius:14px; overflow:hidden; background:var(--white); }
+  .faq-q {
+    width:100%; text-align:left; background:none; border:none; padding:20px 24px;
+    font-family:'Syne',sans-serif; font-weight:700; font-size:15px; color:var(--dark);
+    cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;
+  }
+  .faq-q:hover { color:var(--teal); }
+  .faq-arrow { font-size:18px; transition:transform .3s; flex-shrink:0; color:var(--gold); }
+  .faq-item.open .faq-arrow { transform:rotate(180deg); }
+  .faq-a {
+    max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s;
+    font-size:14px; color:var(--text-muted); line-height:1.8; padding:0 24px;
+  }
+  .faq-item.open .faq-a { max-height:200px; padding:0 24px 20px; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -1496,13 +1513,25 @@
     </div>
 
     <p class="hero-sub">
-      We care for your teeth, so you can smile with <strong>confidence.</strong>
-      Expert dental care in the heart of Ikeja, Lagos.
+      Lagos's most trusted dental clinic. We combine modern technology with genuine care to give you a smile you're proud of — <strong>painlessly and affordably.</strong>
     </p>
 
     <div class="hero-btns">
-      <a href="#" class="btn-primary" onclick="openModal(event)">📞 Book Appointment</a>
+      <a href="#" class="btn-primary" onclick="openModal(event)">📞 Book Free Consultation</a>
       <a href="#results" class="btn-secondary">See Results</a>
+    </div>
+
+    <!-- inline trust proof -->
+    <div style="display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);">
+        <span style="color:var(--gold);font-size:16px;">★</span> <strong style="color:var(--dark);">4.9</strong> Google Rating
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);">
+        <span style="color:var(--teal);">✓</span> <strong style="color:var(--dark);">8,000+</strong> Happy Patients
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);">
+        <span style="color:var(--teal);">✓</span> <strong style="color:var(--dark);">12+</strong> Years in Lagos
+      </div>
     </div>
 
     <div class="hero-photo-wrap">
@@ -1534,27 +1563,27 @@
       <ul class="services-list">
         <li>
           <div class="service-icon"><img src="unnamed (2).jpg" alt="General Dentistry" /></div>
-          General Dentistry
+          <div><div style="font-weight:600;font-size:13px;">General Dentistry</div><div style="font-size:11px;color:var(--text-muted);">Checkups, fillings, cleaning</div></div>
         </li>
         <li>
           <div class="service-icon"><img src="DPkJQpwkSpM-04.jpg" alt="Cosmetic Dentistry" /></div>
-          Cosmetic Dentistry
+          <div><div style="font-weight:600;font-size:13px;">Cosmetic Dentistry</div><div style="font-size:11px;color:var(--text-muted);">Veneers, bonding, smile design</div></div>
         </li>
         <li>
           <div class="service-icon"><img src="DGwxJEJIN9Y-01.jpg" alt="Teeth Whitening" /></div>
-          Teeth Whitening
+          <div><div style="font-weight:600;font-size:13px;">Teeth Whitening</div><div style="font-size:11px;color:var(--text-muted);">Professional LED bleaching</div></div>
         </li>
         <li>
           <div class="service-icon"><img src="DPkJQpwkSpM-03.jpg" alt="Dental Implants" /></div>
-          Dental Implants
+          <div><div style="font-weight:600;font-size:13px;">Dental Implants</div><div style="font-size:11px;color:var(--text-muted);">Permanent tooth replacement</div></div>
         </li>
         <li>
-          <div class="service-icon"><img src="DPkJQpwkSpM-02.jpg" alt="Root Canal Treatment" /></div>
-          Root Canal Treatment
+          <div class="service-icon"><img src="DPkJQpwkSpM-02.jpg" alt="Root Canal" /></div>
+          <div><div style="font-weight:600;font-size:13px;">Root Canal</div><div style="font-size:11px;color:var(--text-muted);">Pain-free nerve treatment</div></div>
         </li>
         <li>
           <div class="service-icon"><img src="DGwxJEJIN9Y-02.jpg" alt="Braces &amp; Aligners" /></div>
-          Braces &amp; Aligners
+          <div><div style="font-weight:600;font-size:13px;">Braces &amp; Aligners</div><div style="font-size:11px;color:var(--text-muted);">Clear &amp; traditional options</div></div>
         </li>
       </ul>
     </div>
@@ -1638,7 +1667,10 @@
         Lagos's Most Trusted <em>Dental Clinic</em>
       </h2>
       <p class="about-body fade-up">
-        For over 12 years, Smile Best Dental Clinic has been transforming smiles in Ogba, Ikeja. Our team of experienced dentists combines the latest technology with genuine patient care to deliver results you'll love.
+        Founded in 2012, Smile Best Dental Clinic has grown into one of Ikeja's most respected dental practices — built on a simple belief: every patient deserves a healthy, beautiful smile without fear or financial stress.
+      </p>
+      <p class="about-body fade-up" style="margin-top:-10px;">
+        Our team of qualified, experienced dentists use the latest digital X-ray technology, LED whitening systems and precision implant tools to deliver world-class results right here in Ogba, Lagos. Whether it's your first checkup or a full smile makeover, we treat every patient like family.
       </p>
       <div class="about-stats fade-up">
         <div>
@@ -1679,7 +1711,7 @@
       </div>
       <div class="ba-slider-info">
         <div class="ba-treatment">Teeth Whitening</div>
-        <div class="ba-desc">3 sessions · Professional bleaching</div>
+        <div class="ba-desc">3 sessions · Professional LED bleaching · Shades 6–10 lighter</div>
         <span class="ba-tag">Whitening</span>
       </div>
     </div>
@@ -1691,7 +1723,7 @@
       </div>
       <div class="ba-slider-info">
         <div class="ba-treatment">Porcelain Veneers</div>
-        <div class="ba-desc">8 veneers · Full smile design</div>
+        <div class="ba-desc">8 veneers · Full smile design · Natural look &amp; feel</div>
         <span class="ba-tag">Veneers</span>
       </div>
     </div>
@@ -1703,7 +1735,7 @@
       </div>
       <div class="ba-slider-info">
         <div class="ba-treatment">Braces &amp; Aligners</div>
-        <div class="ba-desc">14 months · Clear aligners</div>
+        <div class="ba-desc">14 months · Clear aligners · Perfectly aligned teeth</div>
         <span class="ba-tag">Orthodontics</span>
       </div>
     </div>
@@ -1758,6 +1790,85 @@
           4.9 / 5 Rating
           <span>320+ Google Reviews</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="padding:100px 60px;background:var(--white);">
+  <div class="section-header">
+    <div class="section-label fade-up">Simple Process</div>
+    <h2 class="section-title fade-up">Your Smile Journey in <em>3 Steps</em></h2>
+    <p style="font-size:14px;color:var(--text-muted);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;" class="fade-up">Getting started is easy. From first contact to confident smile — we handle everything.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:900px;margin:56px auto 0;position:relative;">
+    <!-- connector line -->
+    <div style="position:absolute;top:36px;left:17%;right:17%;height:2px;background:var(--cream-dark);z-index:0;"></div>
+    <div class="fade-up" style="text-align:center;position:relative;z-index:1;">
+      <div style="width:72px;height:72px;background:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:4px solid var(--white);box-shadow:0 0 0 2px var(--dark);">
+        <span style="color:var(--gold);font-family:'Syne',sans-serif;font-weight:800;font-size:22px;">1</span>
+      </div>
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--dark);margin-bottom:10px;">Book Online or Call</h3>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Use our booking form, WhatsApp, or call us directly. We'll confirm your slot within 1 hour — no long waits.</p>
+    </div>
+    <div class="fade-up delay-1" style="text-align:center;position:relative;z-index:1;">
+      <div style="width:72px;height:72px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:4px solid var(--white);box-shadow:0 0 0 2px var(--gold);">
+        <span style="color:var(--dark);font-family:'Syne',sans-serif;font-weight:800;font-size:22px;">2</span>
+      </div>
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--dark);margin-bottom:10px;">Free Consultation</h3>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Meet your dentist, discuss your goals, and get a personalised treatment plan. No pressure, no hidden fees.</p>
+    </div>
+    <div class="fade-up delay-2" style="text-align:center;position:relative;z-index:1;">
+      <div style="width:72px;height:72px;background:var(--teal-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:4px solid var(--white);box-shadow:0 0 0 2px var(--teal-mid);">
+        <span style="color:var(--white);font-family:'Syne',sans-serif;font-weight:800;font-size:22px;">3</span>
+      </div>
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--dark);margin-bottom:10px;">Leave Smiling</h3>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Experience comfortable treatment and walk out with visible results. We follow up to ensure you're 100% happy.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:48px;" class="fade-up">
+    <a href="#" class="btn-primary" style="display:inline-flex;" onclick="openModal(event)">Start Your Journey Today →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:100px 60px;background:var(--cream);">
+  <div style="max-width:750px;margin:0 auto;">
+    <div class="section-header" style="text-align:left;margin-bottom:48px;">
+      <div class="section-label fade-up">Common Questions</div>
+      <h2 class="section-title fade-up">Frequently Asked <em>Questions</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is teeth whitening painful? <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Our professional LED whitening is completely safe and virtually painless. Some patients experience mild sensitivity for 24 hours after treatment, which passes quickly. We use a protective gel on your gums to keep you comfortable throughout.</div>
+      </div>
+      <div class="faq-item fade-up delay-1">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long do dental implants last? <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">With proper care, dental implants can last a lifetime. The titanium post fuses permanently with your jawbone, making it the most durable tooth replacement option available. Regular checkups and good oral hygiene are all you need.</div>
+      </div>
+      <div class="faq-item fade-up delay-2">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How much does treatment cost at Smile Best? <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Our pricing is transparent and competitive for Lagos. Costs vary by treatment — teeth whitening starts from ₦35,000, veneers from ₦60,000 per tooth, and implants from ₦250,000. We offer flexible payment plans so cost is never a barrier to your smile.</div>
+      </div>
+      <div class="faq-item fade-up delay-3">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long do braces or aligners take? <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Treatment time depends on the complexity of your case. Most patients complete their orthodontic journey in 12–24 months. Clear aligners can sometimes be faster for mild to moderate cases. We'll give you a precise timeline at your free consultation.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you accept walk-ins? <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">Yes! We welcome walk-ins Monday to Saturday, 8am–6pm, though we recommend booking ahead to guarantee your preferred time slot. You can book instantly via our website, WhatsApp, or phone call.</div>
       </div>
     </div>
   </div>
@@ -2032,6 +2143,14 @@
     btn.textContent = '✓ Appointment Requested!';
     btn.style.background = 'var(--teal-mid)';
     setTimeout(closeModal, 1800);
+  }
+
+  // ── FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
 
   // ── Set min date for date picker to today
