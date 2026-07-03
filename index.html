@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#160830" />
+  <meta name="theme-color" content="#0B3830" />
 
   <!-- SEO -->
   <title>Smile Best Dental Clinic | Teeth Whitening, Implants &amp; Braces in Ogba, Lagos</title>
@@ -69,16 +69,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --mint:       #F8F0FF;   /* soft lavender page bg  */
-      --mint-mid:   #E2CCF5;   /* lavender border/divider */
-      --dark:       #160830;   /* deep purple-black       */
-      --teal:       #5C2A9D;   /* brand purple            */
-      --teal-mid:   #C2407A;   /* vibrant pink accent     */
-      --gold:       #C9963A;   /* gold — unchanged        */
+      --mint:       #F0F8F6;   /* clean light teal-white bg   */
+      --mint-mid:   #C8E6DF;   /* teal border/divider         */
+      --dark:       #0B3830;   /* deep teal-black (flyer dark) */
+      --teal:       #0F5247;   /* brand teal                  */
+      --teal-mid:   #2A9D8F;   /* lighter teal accent         */
+      --gold:       #C9963A;   /* gold accent                 */
       --gold-light: #DEB05A;
       --white:      #FFFFFF;
-      --text:       #1A0830;   /* dark purple-black text  */
-      --text-muted: #7A5890;   /* muted purple-grey       */
+      --text:       #0A2E28;   /* dark teal text              */
+      --text-muted: #4A7A72;   /* muted teal-grey             */
       --r:          14px;
       --r-sm:       8px;
       --r-lg:       24px;
@@ -105,7 +105,7 @@
       transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
     }
     nav.scrolled {
-      background: rgba(22,8,48,0.92);
+      background: rgba(11,56,48,0.92);
       backdrop-filter: blur(20px);
       padding: 14px 40px;
     }
@@ -303,7 +303,7 @@
       transform: translate(-50%, -50%);
       width: 40%; height: 40%;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(194,64,122,0.22) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(42,157,143,0.22) 0%, transparent 70%);
       pointer-events: none;
       filter: blur(18px);
     }
@@ -359,7 +359,7 @@
       position: absolute;
       bottom: 5px; left: 50%;
       transform: translateX(-50%);
-      background: rgba(22,8,48,0.88);
+      background: rgba(11,56,48,0.88);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.1);
       color: var(--white);
@@ -495,7 +495,7 @@
     .bento-label {
       position: absolute;
       bottom: 20px; left: 20px;
-      background: rgba(22,8,48,0.82);
+      background: rgba(11,56,48,0.82);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.1);
       padding: 10px 16px;
@@ -676,6 +676,19 @@
       color: var(--teal);
     }
     .stat-n span { color: var(--gold); }
+    .trust-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .trust-sub {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal-mid);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
     .stat-l {
       font-size: 14px;
       font-weight: 300;
@@ -709,7 +722,7 @@
       background: var(--white);
       border-radius: var(--r-lg);
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(22,8,48,0.08);
+      box-shadow: 0 4px 24px rgba(11,56,48,0.08);
     }
     .ba-imgs {
       display: grid;
@@ -734,7 +747,7 @@
       content: attr(data-label);
       position: absolute;
       top: 10px; left: 10px;
-      background: rgba(22,8,48,0.82);
+      background: rgba(11,56,48,0.82);
       backdrop-filter: blur(8px);
       color: #fff;
       font-size: 10px;
@@ -942,7 +955,7 @@
       font-size: clamp(6rem, 16vw, 18rem);
       letter-spacing: -0.05em;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(22,8,48,0.05);
+      -webkit-text-stroke: 1px rgba(11,56,48,0.05);
       white-space: nowrap;
       pointer-events: none;
       line-height: 1;
@@ -1241,12 +1254,11 @@
     <div class="hero-left">
       <p class="hero-tag" id="htag">Smile Best Dental Clinic · Ogba, Ikeja, Lagos</p>
       <h1 class="hero-headline" id="hhead">
-        Your Best<br>
-        <em>Smile</em>
-        Starts Here
+        Healthy Smile,<br>
+        <em>Brighter Life</em>
       </h1>
       <p class="hero-sub" id="hsub">
-        Advanced dental care in Ikeja, Lagos. Teeth whitening, implants, veneers, braces and general dentistry — all under one roof.
+        We care for your teeth, so you can smile with confidence. Expert dental care in Ogba, Ikeja, Lagos.
       </p>
       <div class="hero-actions" id="hacts">
         <a href="tel:+2348012345678" class="btn-primary" aria-label="Call to book an appointment">Book an Appointment</a>
@@ -1284,22 +1296,22 @@
   <!-- MARQUEE -->
   <div class="marquee-section">
     <div class="marquee-track" aria-hidden="true">
+      <span>General Dentistry</span>
+      <span>Cosmetic Dentistry</span>
       <span>Teeth Whitening</span>
       <span>Dental Implants</span>
-      <span>Orthodontics</span>
-      <span>Veneers</span>
-      <span>Root Canal</span>
-      <span>Crowns &amp; Bridges</span>
+      <span>Root Canal Treatment</span>
+      <span>Braces &amp; Aligners</span>
+      <span>Safe &amp; Painless</span>
+      <span>Your Smile, Our Priority</span>
+      <span>General Dentistry</span>
       <span>Cosmetic Dentistry</span>
-      <span>General Check-up</span>
       <span>Teeth Whitening</span>
       <span>Dental Implants</span>
-      <span>Orthodontics</span>
-      <span>Veneers</span>
-      <span>Root Canal</span>
-      <span>Crowns &amp; Bridges</span>
-      <span>Cosmetic Dentistry</span>
-      <span>General Check-up</span>
+      <span>Root Canal Treatment</span>
+      <span>Braces &amp; Aligners</span>
+      <span>Safe &amp; Painless</span>
+      <span>Your Smile, Our Priority</span>
     </div>
   </div>
 
@@ -1316,40 +1328,40 @@
       <div class="bento-grid fade-up delay-1">
 
         <div class="bento-cell bc-1">
-          <img src="DGwxJEJIN9Y-02.jpg" alt="Cosmetic dentistry" />
+          <img src="DGwxJEJIN9Y-02.jpg" alt="Cosmetic dentistry Lagos" />
           <div class="bento-label">
-            <h3>Smile Makeovers</h3>
+            <h3>Cosmetic Dentistry</h3>
             <p>Veneers, whitening, bonding</p>
           </div>
         </div>
 
         <div class="bento-cell bc-2">
-          <img src="DPkJQpwkSpM-02.jpg" alt="Dental implants" />
+          <img src="DPkJQpwkSpM-02.jpg" alt="Teeth whitening Lagos" />
           <div class="bento-label">
-            <h3>Dental Implants</h3>
-            <p>Permanent tooth replacement</p>
+            <h3>Teeth Whitening</h3>
+            <p>Professional bleaching</p>
           </div>
         </div>
 
         <div class="bento-cell bc-3">
-          <img src="DZ3J4CJx2XF.webp" alt="Orthodontics" />
+          <img src="DZ3J4CJx2XF.webp" alt="Braces and aligners Lagos" />
           <div class="bento-label">
-            <h3>Orthodontics</h3>
-            <p>Braces &amp; clear aligners</p>
+            <h3>Braces &amp; Aligners</h3>
+            <p>Clear aligners, fixed braces</p>
           </div>
         </div>
 
         <div class="bento-cell bc-4">
           <div class="bento-text-inner">
-            <p>General &amp; Preventive Dentistry</p>
+            <p>General Dentistry &amp; Root Canal</p>
             <a href="tel:+2348012345678">Book a check-up</a>
           </div>
         </div>
 
         <div class="bento-cell bc-5">
           <div class="bento-text-inner">
-            <p>Treatments Offered</p>
-            <div class="big-n">15<span>+</span></div>
+            <p>Dental Implants</p>
+            <div class="big-n">100<span>%</span></div>
           </div>
         </div>
 
@@ -1397,25 +1409,33 @@
     </div>
   </section>
 
-  <!-- STATS -->
+  <!-- TRUST STRIP (matches flyer) -->
   <section class="stats-section">
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item fade-up">
+          <div class="trust-icon">🛡️</div>
           <div class="stat-n">8k<span>+</span></div>
           <div class="stat-l">Patients Treated</div>
+          <div class="trust-sub">Safe &amp; Painless Treatments</div>
         </div>
         <div class="stat-item fade-up delay-1">
-          <div class="stat-n">12<span>yr</span></div>
-          <div class="stat-l">Years of Experience</div>
+          <div class="trust-icon">👨‍⚕️</div>
+          <div class="stat-n">12<span>+</span></div>
+          <div class="stat-l">Years Experience</div>
+          <div class="trust-sub">Experienced Dentists</div>
         </div>
         <div class="stat-item fade-up delay-2">
+          <div class="trust-icon">🦷</div>
           <div class="stat-n">4.9<span>★</span></div>
           <div class="stat-l">Google Rating</div>
+          <div class="trust-sub">Modern Technology</div>
         </div>
         <div class="stat-item fade-up delay-3">
+          <div class="trust-icon">❤️</div>
           <div class="stat-n">97<span>%</span></div>
-          <div class="stat-l">Patient Satisfaction</div>
+          <div class="stat-l">Satisfaction Rate</div>
+          <div class="trust-sub">Patient Care &amp; Comfort</div>
         </div>
       </div>
     </div>
