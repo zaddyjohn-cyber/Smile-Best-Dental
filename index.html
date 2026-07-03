@@ -563,37 +563,25 @@
 
     /* ── ABOUT ── */
     .about-section {
-      position: relative;
-      min-height: 600px;
-      overflow: hidden;
-      display: flex; align-items: center;
-    }
-    .about-bg {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .about-bg img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
-    }
-    .about-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(105deg, rgba(7,28,23,0.92) 0%, rgba(7,28,23,0.75) 55%, rgba(7,28,23,0.5) 100%);
-    }
-    .about-content {
-      position: relative; z-index: 1;
+      background: var(--dark);
       padding: 100px 80px;
-      max-width: 760px;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: 1360px;
+      margin: 0 auto;
     }
     .about-content h2 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: clamp(2.4rem, 4.5vw, 5rem);
+      font-size: clamp(2.4rem, 4vw, 4.5rem);
       line-height: 0.95;
       letter-spacing: -0.03em;
       color: var(--white);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .about-content h2 em {
       font-style: italic;
@@ -602,25 +590,66 @@
       padding-bottom: 4px;
     }
     .about-content p {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.65);
-      max-width: 52ch;
-      line-height: 1.8;
-      margin-bottom: 36px;
+      color: rgba(255,255,255,0.6);
+      max-width: 48ch;
+      line-height: 1.85;
+      margin-bottom: 32px;
     }
     .about-chips {
       display: flex; gap: 10px; flex-wrap: wrap;
     }
     .chip {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.72);
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.06em;
       padding: 8px 16px;
       border-radius: var(--r-xl);
+    }
+
+    /* About photo stack */
+    .about-photos {
+      position: relative;
+      height: 520px;
+    }
+    .about-photo {
+      position: absolute;
+      overflow: hidden;
+      border-radius: var(--r-lg);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(201,150,58,0.18);
+    }
+    .about-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .about-photo:hover img { transform: scale(1.04); }
+    .ap-1 { width: 62%; height: 58%; top: 0; left: 0; }
+    .ap-2 { width: 48%; height: 50%; top: 4%; right: 0; }
+    .ap-3 { width: 54%; height: 46%; bottom: 0; left: 6%; }
+    .ap-4 { width: 44%; height: 40%; bottom: 4%; right: 0; }
+
+    /* Gold accent badge */
+    .about-badge {
+      position: absolute;
+      bottom: 48px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding: 10px 20px;
+      border-radius: var(--r-xl);
+      white-space: nowrap;
+      z-index: 5;
+      box-shadow: 0 8px 24px rgba(201,150,58,0.4);
     }
 
     /* ── STATS ── */
@@ -994,7 +1023,7 @@
       .services-section, .results-section, .testimonials-section,
       .insta-section, .cta-section, footer { padding-left: 40px; padding-right: 40px; }
       .stats-section { padding: 60px 40px; }
-      .about-content { padding: 80px 40px; }
+      .about-section { padding: 80px 40px; }
       .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 280px 160px; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
@@ -1089,7 +1118,13 @@
       .cta-section, footer { padding-left: 20px; padding-right: 20px; }
       .insta-section { padding: 60px 20px; }
       .stats-section { padding: 60px 20px; }
-      .about-content { padding: 64px 20px; }
+      .about-section { padding: 60px 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-photos { height: 360px; }
+      .ap-1 { width: 58%; height: 55%; }
+      .ap-2 { width: 46%; height: 48%; }
+      .ap-3 { width: 52%; height: 44%; }
+      .ap-4 { width: 42%; height: 38%; }
 
       .bento-grid { grid-template-columns: 1fr; grid-template-rows: 260px 220px 220px 140px 110px; }
       .bc-1 { grid-column: 1; grid-row: 1; }
@@ -1279,24 +1314,41 @@
 
   <!-- ABOUT -->
   <section class="about-section" id="about">
-    <div class="about-bg">
-      <img src="unnamed.jpg" alt="Smile Best Dental Clinic" />
-    </div>
-    <div class="about-content">
-      <h2 class="fade-up">
-        Built on trust,<br>
-        <em>driven by results</em>
-      </h2>
-      <p class="fade-up delay-1">
-        Smile Best Dental Clinic has served the Ogba and Ikeja community for over a decade. We combine modern technology with genuine patient care to deliver outcomes that last.
-      </p>
-      <div class="about-chips fade-up delay-2">
-        <span class="chip">Digital X-Ray</span>
-        <span class="chip">Pain-Free Dentistry</span>
-        <span class="chip">NHIS Accepted</span>
-        <span class="chip">Emergency Care</span>
-        <span class="chip">Kids Friendly</span>
+    <div class="about-grid">
+
+      <div class="about-content">
+        <h2 class="fade-up">
+          Built on trust,<br>
+          <em>driven by results</em>
+        </h2>
+        <p class="fade-up delay-1">
+          Smile Best Dental Clinic has served the Ogba and Ikeja community for over a decade. We combine modern technology with genuine patient care to deliver outcomes that last.
+        </p>
+        <div class="about-chips fade-up delay-2">
+          <span class="chip">Digital X-Ray</span>
+          <span class="chip">Pain-Free Dentistry</span>
+          <span class="chip">NHIS Accepted</span>
+          <span class="chip">Emergency Care</span>
+          <span class="chip">Kids Friendly</span>
+        </div>
       </div>
+
+      <div class="about-photos fade-up delay-1">
+        <div class="about-photo ap-1">
+          <img src="unnamed.jpg" alt="Smile Best Dental Clinic reception" loading="lazy" />
+        </div>
+        <div class="about-photo ap-2">
+          <img src="unnamed (1).jpg" alt="Dental treatment room" loading="lazy" />
+        </div>
+        <div class="about-photo ap-3">
+          <img src="DPkJQpwkSpM-01.jpg" alt="Patient whitening results" loading="lazy" />
+        </div>
+        <div class="about-photo ap-4">
+          <img src="DZ3J4CJx2XF.webp" alt="Dental care Lagos" loading="lazy" />
+        </div>
+        <div class="about-badge">12+ Years Serving Lagos</div>
+      </div>
+
     </div>
   </section>
 
