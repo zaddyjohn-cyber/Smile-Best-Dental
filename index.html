@@ -1017,6 +1017,375 @@
   .delay-2 { transition-delay: .2s; }
   .delay-3 { transition-delay: .3s; }
 
+  /* ── DRAG SLIDER (Before/After) ── */
+  .ba-slider-section {
+    padding: 100px 60px;
+    background: var(--white);
+  }
+  .ba-sliders-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .ba-slider-card {
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+    background: var(--cream);
+  }
+  .ba-slider-wrap {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    cursor: col-resize;
+    user-select: none;
+  }
+  .ba-slider-after,
+  .ba-slider-before {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .ba-slider-after img,
+  .ba-slider-before img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    max-width: none;
+  }
+  .ba-slider-before {
+    clip-path: inset(0 50% 0 0);
+  }
+  .ba-slider-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: var(--white);
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .ba-slider-handle::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px; height: 36px;
+    background: var(--white);
+    border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .ba-slider-handle::after {
+    content: '◀ ▶';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 9px;
+    color: var(--dark);
+    letter-spacing: -1px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .ba-label {
+    position: absolute;
+    top: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .ba-label-before {
+    left: 10px;
+    background: rgba(11,56,48,0.85);
+    color: #fff;
+  }
+  .ba-label-after {
+    right: 10px;
+    background: rgba(201,150,58,0.9);
+    color: var(--dark);
+  }
+  .ba-slider-info {
+    padding: 16px 18px;
+  }
+
+  /* ── VIDEO REEL ── */
+  .reel-section {
+    padding: 100px 0 100px 60px;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .reel-header {
+    padding-right: 60px;
+    margin-bottom: 40px;
+  }
+  .reel-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+  }
+  .reel-scroll::-webkit-scrollbar { display: none; }
+  .reel-item {
+    flex-shrink: 0;
+    width: 220px;
+    height: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    position: relative;
+    cursor: pointer;
+  }
+  .reel-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+  }
+  .reel-item:hover video { transform: scale(1.04); }
+  .reel-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(11,56,48,0.7) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .reel-item-label {
+    position: absolute;
+    bottom: 16px; left: 16px;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    pointer-events: none;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section {
+    padding: 100px 60px;
+    background: var(--dark);
+  }
+  .testimonials-section .section-label { color: var(--gold); }
+  .testimonials-section .section-title { color: var(--white); }
+  .testimonials-section .section-title em { color: var(--gold); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background .3s;
+  }
+  .testimonial-card:hover { background: rgba(255,255,255,0.1); }
+  .testimonial-stars {
+    display: flex;
+    gap: 3px;
+    color: var(--gold);
+    font-size: 16px;
+  }
+  .testimonial-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    flex: 1;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testimonial-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold);
+    flex-shrink: 0;
+  }
+  .testimonial-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    max-width: none;
+  }
+  .testimonial-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+  }
+  .testimonial-treatment {
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  .whatsapp-bubble {
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none;
+  }
+  .whatsapp-bubble:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+  .whatsapp-bubble svg { width: 30px; height: 30px; fill: #fff; }
+  .whatsapp-tooltip {
+    background: var(--dark);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    animation: wa-pop .3s ease;
+    display: none;
+  }
+  .whatsapp-float:hover .whatsapp-tooltip { display: block; }
+  @keyframes wa-pop { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── BOOKING MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7,28,23,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 48px;
+    width: 100%;
+    max-width: 520px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform .3s;
+  }
+  .modal-overlay.open .modal-box { transform: translateY(0); }
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--cream);
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    transition: background .2s;
+  }
+  .modal-close:hover { background: var(--cream-dark); }
+  .modal-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .modal-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .form-field input,
+  .form-field select {
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    transition: border-color .2s;
+    appearance: none;
+  }
+  .form-field input:focus,
+  .form-field select:focus { border-color: var(--teal); background: var(--white); }
+  .form-submit {
+    background: var(--dark);
+    color: var(--white);
+    border: none;
+    border-radius: 40px;
+    padding: 15px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background .2s, transform .2s;
+  }
+  .form-submit:hover { background: var(--teal); transform: translateY(-1px); }
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -1024,7 +1393,8 @@
     .hero-right { height: 460px; grid-template-rows: 1fr auto; }
     .about-grid, .why-grid { grid-template-columns: 1fr; gap: 48px; }
     .about-photos { height: 360px; }
-    .ba-grid { grid-template-columns: 1fr 1fr; }
+    .ba-sliders-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
     .gallery-grid { grid-template-columns: repeat(3,1fr); }
     .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
     .cta-bar-inner { grid-template-columns: 1fr; gap: 28px; }
@@ -1041,14 +1411,20 @@
     .trust-strip { padding: 24px 20px; }
     .trust-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
     .trust-item { height: 130px; }
-    .about-section, .results-section, .why-section, .gallery-section { padding: 60px 20px; }
-    .ba-grid { grid-template-columns: 1fr; }
+    .about-section, .why-section, .gallery-section { padding: 60px 20px; }
+    .ba-slider-section, .testimonials-section, .reel-section { padding: 60px 20px; }
+    .reel-section { padding: 60px 0 60px 20px; }
+    .ba-sliders-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4,160px); }
     .gallery-item.wide { grid-column: span 1; }
     .cta-bar { padding: 40px 20px; }
     .footer { padding: 48px 20px; }
     .footer-inner { grid-template-columns: 1fr; gap: 28px; }
     .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .modal-box { padding: 32px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .whatsapp-float { bottom: 20px; right: 20px; }
   }
 </style>
 </head>
@@ -1065,7 +1441,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact" class="nav-cta">Book Appointment</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(event)">Book Appointment</a></li>
   </ul>
   <button class="nav-burger" onclick="document.querySelector('.mobile-menu').classList.add('open')" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -1078,7 +1454,7 @@
   <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Services</a>
   <a href="#results" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Results</a>
   <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
-  <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Book Appointment</a>
+  <a href="#" onclick="document.querySelector('.mobile-menu').classList.remove('open'); openModal(event)">Book Appointment</a>
 </div>
 
 <!-- HERO -->
@@ -1100,7 +1476,7 @@
     </p>
 
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">📞 Book Appointment</a>
+      <a href="#" class="btn-primary" onclick="openModal(event)">📞 Book Appointment</a>
       <a href="#results" class="btn-secondary">See Results</a>
     </div>
 
@@ -1241,19 +1617,19 @@
       </p>
       <div class="about-stats fade-up">
         <div>
-          <div class="about-stat-n">8k<span>+</span></div>
+          <div class="about-stat-n"><span data-target="8000">0</span><span>+</span></div>
           <div class="about-stat-l">Patients Treated</div>
         </div>
         <div>
-          <div class="about-stat-n">12<span>+</span></div>
+          <div class="about-stat-n"><span data-target="12">0</span><span>+</span></div>
           <div class="about-stat-l">Years Experience</div>
         </div>
         <div>
-          <div class="about-stat-n">4.9<span>★</span></div>
-          <div class="about-stat-l">Google Rating</div>
+          <div class="about-stat-n"><span data-target="320">0</span><span>+</span></div>
+          <div class="about-stat-l">Google Reviews</div>
         </div>
       </div>
-      <a href="#contact" class="btn-primary fade-up" style="display:inline-flex;">Book a Consultation</a>
+      <a href="#" class="btn-primary fade-up" style="display:inline-flex;" onclick="openModal(event)">Book a Consultation</a>
     </div>
     <div class="about-photos fade-up delay-2">
       <div class="about-photo ap-1"><img src="DPkJQpwkSpM-01.jpg" alt="Dental procedure" /></div>
@@ -1263,58 +1639,60 @@
   </div>
 </section>
 
-<!-- BEFORE / AFTER -->
-<section class="results-section" id="results">
+<!-- BEFORE / AFTER DRAG SLIDERS -->
+<section class="ba-slider-section" id="results">
   <div class="section-header">
     <div class="section-label fade-up">Real Patient Results</div>
     <h2 class="section-title fade-up">Before &amp; <em>After</em></h2>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:10px;" class="fade-up">Drag the handle to reveal the transformation</p>
   </div>
-  <div class="ba-grid">
-    <div class="ba-card fade-up">
-      <div class="ba-photos">
-        <div class="ba-img-wrap" data-label="Before">
-          <img src="DGwxJEJIN9Y-02.jpg" alt="Before teeth whitening" />
-        </div>
-        <div class="ba-img-wrap after-img" data-label="After">
-          <img src="DGwxJEJIN9Y-01.jpg" alt="After teeth whitening" />
-        </div>
+  <div class="ba-sliders-grid">
+
+    <div class="ba-slider-card fade-up">
+      <div class="ba-slider-wrap" data-slider>
+        <div class="ba-slider-after"><img src="DGwxJEJIN9Y-01.jpg" alt="After whitening" /></div>
+        <div class="ba-slider-before"><img src="DGwxJEJIN9Y-02.jpg" alt="Before whitening" /></div>
+        <div class="ba-slider-handle"></div>
+        <span class="ba-label ba-label-before">Before</span>
+        <span class="ba-label ba-label-after">After</span>
       </div>
-      <div class="ba-info">
+      <div class="ba-slider-info">
         <div class="ba-treatment">Teeth Whitening</div>
         <div class="ba-desc">3 sessions · Professional bleaching</div>
         <span class="ba-tag">Whitening</span>
       </div>
     </div>
-    <div class="ba-card fade-up delay-1">
-      <div class="ba-photos">
-        <div class="ba-img-wrap" data-label="Before">
-          <img src="DPkJQpwkSpM-03.jpg" alt="Before veneers" />
-        </div>
-        <div class="ba-img-wrap after-img" data-label="After">
-          <img src="DPkJQpwkSpM-04.jpg" alt="After veneers" />
-        </div>
+
+    <div class="ba-slider-card fade-up delay-1">
+      <div class="ba-slider-wrap" data-slider>
+        <div class="ba-slider-after"><img src="DPkJQpwkSpM-04.jpg" alt="After veneers" /></div>
+        <div class="ba-slider-before"><img src="DPkJQpwkSpM-03.jpg" alt="Before veneers" /></div>
+        <div class="ba-slider-handle"></div>
+        <span class="ba-label ba-label-before">Before</span>
+        <span class="ba-label ba-label-after">After</span>
       </div>
-      <div class="ba-info">
+      <div class="ba-slider-info">
         <div class="ba-treatment">Porcelain Veneers</div>
         <div class="ba-desc">8 veneers · Full smile design</div>
         <span class="ba-tag">Veneers</span>
       </div>
     </div>
-    <div class="ba-card fade-up delay-2">
-      <div class="ba-photos">
-        <div class="ba-img-wrap" data-label="Before">
-          <img src="DPkJQpwkSpM-02.jpg" alt="Before orthodontics" />
-        </div>
-        <div class="ba-img-wrap after-img" data-label="After">
-          <img src="DPkJQpwkSpM-01.jpg" alt="After orthodontics" />
-        </div>
+
+    <div class="ba-slider-card fade-up delay-2">
+      <div class="ba-slider-wrap" data-slider>
+        <div class="ba-slider-after"><img src="DPkJQpwkSpM-01.jpg" alt="After aligners" /></div>
+        <div class="ba-slider-before"><img src="DPkJQpwkSpM-02.jpg" alt="Before aligners" /></div>
+        <div class="ba-slider-handle"></div>
+        <span class="ba-label ba-label-before">Before</span>
+        <span class="ba-label ba-label-after">After</span>
       </div>
-      <div class="ba-info">
+      <div class="ba-slider-info">
         <div class="ba-treatment">Braces &amp; Aligners</div>
         <div class="ba-desc">14 months · Clear aligners</div>
         <span class="ba-tag">Orthodontics</span>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1364,6 +1742,67 @@
         <div class="why-badge-text">
           4.9 / 5 Rating
           <span>320+ Google Reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO REEL -->
+<section class="reel-section">
+  <div class="reel-header">
+    <div class="section-label fade-up">Clinic Highlights</div>
+    <h2 class="section-title fade-up">Watch Our <em>Work</em></h2>
+  </div>
+  <div class="reel-scroll">
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="C9R3gY-uyQz.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Smile Transformation</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DMN3nVQClIb.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Whitening Session</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DMcdpxwsS-g.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Veneer Fitting</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DMh3YiKixKO.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Braces &amp; Aligners</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DNavT-Os-U4.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Implant Procedure</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DNlfQqUMrid.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Patient Care</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DOUgejGiF09.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Cosmetic Dentistry</div></div>
+    <div class="reel-item"><video autoplay muted loop playsinline><source src="DQv5F7PjIZa.mp4" type="video/mp4"/></video><div class="reel-item-overlay"></div><div class="reel-item-label">Root Canal</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-header" style="margin-bottom:48px;">
+    <div class="section-label fade-up">Patient Stories</div>
+    <h2 class="section-title fade-up">What Our Patients <em>Say</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"I was so nervous about my first visit but the team made me feel completely at ease. My teeth whitening results were incredible — I couldn't stop smiling for weeks!"</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar"><img src="unnamed.jpg" alt="Amaka O." /></div>
+        <div>
+          <div class="testimonial-name">Amaka O.</div>
+          <div class="testimonial-treatment">Teeth Whitening</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up delay-1">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Got my veneers done here and the transformation is absolutely stunning. The dentist was professional, detailed and explained every step. Best dental clinic in Lagos!"</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar"><img src="DPkJQpwkSpM-01.jpg" alt="Chidi M." /></div>
+        <div>
+          <div class="testimonial-name">Chidi M.</div>
+          <div class="testimonial-treatment">Porcelain Veneers</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up delay-2">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"My braces journey at Smile Best was seamless from start to finish. The staff are warm, the clinic is spotless and modern. Highly recommend to anyone in Ikeja!"</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar"><img src="DGwxJEJIN9Y-01.jpg" alt="Tolu A." /></div>
+        <div>
+          <div class="testimonial-name">Tolu A.</div>
+          <div class="testimonial-treatment">Braces &amp; Aligners</div>
         </div>
       </div>
     </div>
@@ -1463,12 +1902,126 @@
   </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float">
+  <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+  <a class="whatsapp-bubble" href="https://wa.me/2348012345678?text=Hello%20Smile%20Best%20Dental%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.737 5.469 2.027 7.774L0 32l8.473-2.001A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.771-1.852l-.485-.29-5.029 1.187 1.213-4.906-.317-.503A13.272 13.272 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.261-9.961c-.398-.199-2.354-1.162-2.719-1.295-.365-.133-.631-.199-.897.199-.266.398-1.029 1.295-1.261 1.561-.232.266-.465.299-.863.1-.398-.199-1.681-.619-3.203-1.975-1.183-1.055-1.982-2.358-2.214-2.756-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.698.199-.232.266-.398.398-.664.133-.266.066-.498-.033-.697-.1-.199-.897-2.162-1.229-2.96-.324-.778-.653-.672-.897-.684l-.764-.013c-.266 0-.697.1-.1063.498-.365.398-1.394 1.362-1.394 3.322s1.427 3.853 1.626 4.119c.199.266 2.808 4.285 6.805 6.009.951.411 1.693.656 2.271.839.954.303 1.823.260 2.509.158.765-.114 2.354-.963 2.686-1.893.332-.930.332-1.727.232-1.893-.099-.166-.365-.266-.763-.465z"/></svg>
+  </a>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Book an Appointment</div>
+    <div class="modal-sub">Fill in your details and we'll confirm within 1 hour</div>
+    <form class="modal-form" onsubmit="submitBooking(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" placeholder="e.g. Amaka" required />
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="e.g. Okonkwo" required />
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+234 801 234 5678" required />
+      </div>
+      <div class="form-field">
+        <label>Treatment</label>
+        <select required>
+          <option value="" disabled selected>Select a treatment</option>
+          <option>General Dentistry</option>
+          <option>Teeth Whitening</option>
+          <option>Cosmetic Dentistry</option>
+          <option>Dental Implants</option>
+          <option>Porcelain Veneers</option>
+          <option>Root Canal Treatment</option>
+          <option>Braces &amp; Aligners</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Preferred Date</label>
+        <input type="date" required />
+      </div>
+      <button type="submit" class="form-submit">Confirm Appointment →</button>
+      <p class="form-note">📞 Or call us directly: <strong>+234 801 234 5678</strong></p>
+    </form>
+  </div>
+</div>
+
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  // ── Scroll reveal
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-up').forEach(el => revealObs.observe(el));
+
+  // ── Counting stats animation
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current).toLocaleString();
+      if (current >= target) clearInterval(timer);
+    }, 16);
+  }
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => countObs.observe(el));
+
+  // ── Before/After drag sliders
+  document.querySelectorAll('[data-slider]').forEach(slider => {
+    const before = slider.querySelector('.ba-slider-before');
+    const handle = slider.querySelector('.ba-slider-handle');
+    let dragging = false;
+
+    function setPos(x) {
+      const rect = slider.getBoundingClientRect();
+      let pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+      const leftPct = pct * 100;
+      before.style.clipPath = `inset(0 ${100 - leftPct}% 0 0)`;
+      handle.style.left = leftPct + '%';
+    }
+
+    slider.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); });
+    window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+
+    slider.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+  });
+
+  // ── Modal
+  function openModal(e) { e && e.preventDefault(); document.getElementById('bookingModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { document.getElementById('bookingModal').classList.remove('open'); document.body.style.overflow = ''; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function submitBooking(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✓ Appointment Requested!';
+    btn.style.background = 'var(--teal-mid)';
+    setTimeout(closeModal, 1800);
+  }
+
+  // ── Set min date for date picker to today
+  const dateInput = document.querySelector('input[type="date"]');
+  if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
 </script>
 
 </body>
